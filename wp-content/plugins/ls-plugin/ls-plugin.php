@@ -25,7 +25,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 	register_activation_hook( '__FILE__' , 'prowp_install' );
 	function prowp_install() {}
-	
+
 	add_action( 'admin_menu', 'prowp_create_settings_submenu' );
 	function prowp_create_settings_submenu() {
 		add_options_page( 'Ajax puller', 'Обновить базу',
@@ -41,10 +41,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 		<script src="<?php echo plugins_url( 'js/jquery-3.1.1.min.js', __FILE__ ) ?>"></script>
 
 		<div class="az-wrap">
-			<h2>Ajax puller</h2>
+			<h2>Обновление базы данных</h2>
 			<form action="<?php echo plugins_url( 'ls-plugin.php', __FILE__ ) ?>" class="az-form" >
 				<label for="">URL для ajax запроса</label><input type="text" value="http://db.ru">
-				<input type="submit" value="Обновить базу данных">
+				<input type="submit" value="Синхронизация">
 			</form>
 		</div>
 
@@ -70,7 +70,14 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 	add_action('wp_ajax_axaj_puller', 'axaj_puller_callback');
 	function axaj_puller_callback() {
 		global $wpdb;
-		echo $wpdb->posts;
+		$az_json = $_POST['az_json'];
+		// print_r($az_json);
+		if($wpdb->update($wpdb->posts, array('post_title' => 'anzar post', 'post_content' => 'anzar content'), array('ID' => $az_json['id']))){
+			echo 'База успешно синхронизованна';
+		}else{
+			echo 'База не синхронизованна';
+		}
+		// echo $wpdb->posts;
 		wp_die();
 	}
 

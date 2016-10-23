@@ -6,7 +6,7 @@ $(document).ready(function(){
 		// alert($(this).attr('action'));
         var data = {
             action: 'axaj_puller',
-            whatever: 1234
+            az_json: temp
         };
 		$.ajax({
             url: $(this).attr('action'),
