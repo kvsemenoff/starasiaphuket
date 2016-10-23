@@ -5,7 +5,7 @@ $(document).ready(function(){
 	$('.az-form').submit(function(){
 		// alert($(this).attr('action'));
         var data = {
-            action: 'my_action',
+            action: 'axaj_puller',
             whatever: 1234
         };
 		$.ajax({
