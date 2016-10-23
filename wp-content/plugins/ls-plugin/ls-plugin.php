@@ -72,11 +72,26 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 		global $wpdb;
 		$az_json = $_POST['az_json'];
 		// print_r($az_json);
-		if($wpdb->update($wpdb->posts, array('post_title' => 'anzar post', 'post_content' => 'anzar content'), array('ID' => $az_json['id']))){
-			echo 'База успешно синхронизованна';
-		}else{
-			echo 'База не синхронизованна';
+		// if($wpdb->update($wpdb->posts, array('post_title' => 'anzar post2', 'post_content' => 'anzar content'), array('ID' => $az_json['id']))){
+			// $temp_id = $az_json['id'];
+		foreach ($az_json as $value){
+			// print_r($value);
+			$query = new WP_Query('p='.$value["id"]);
+			if($query->have_posts()){
+				$query->the_post();
+				next($value);
+				while ($cur_val = current($value)) {
+			    	update_field(key($value), $cur_val);
+				    next($value);
+				}
+			}
 		}
+			
+			// print_r($query);
+		// 	echo "База успешно синхронизованна $temp_id";
+		// }else{
+		// 	echo 'База не синхронизованна';
+		// }
 		// echo $wpdb->posts;
 		wp_die();
 	}
