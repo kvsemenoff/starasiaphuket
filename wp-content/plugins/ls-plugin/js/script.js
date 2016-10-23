@@ -3,17 +3,19 @@ $(document).ready(function(){
 	var temp = eval(az_json);
 	// alert(temp.name1);
 	$('.az-form').submit(function(){
-		alert($(this).attr('action'));
-
+		// alert($(this).attr('action'));
+        var data = {
+            action: 'my_action',
+            whatever: 1234
+        };
 		$.ajax({
             url: $(this).attr('action'),
             type: 'post',
-            data: {
-                data : temp
-            },
+            data: data,
             success: function (data) {
-            	var temp = eval(data);
-                alert(temp.asd);
+            	// var temp = eval(data);
+                // alert(temp.asd);
+                alert(data);
             }
         });
   		return false;

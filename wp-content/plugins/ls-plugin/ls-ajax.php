@@ -14,14 +14,24 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
-global $wpdb;
+add_action('wp_ajax_my_action', 'my_action_callback');
+function my_action_callback() {
+	$whatever = intval( $_POST['whatever'] );
 
-$wpdb->show_errors();
-$wpdb->insert($wpdb->posts, array('post_title' => 'newtitle',
-'post_content' => 'newcontent'));
-$wpdb->print_error();
+	$whatever += 10;
+	echo $whatever;
 
-echo '({"asd": "asdasd"})';
+	wp_die(); // выход нужен для того, чтобы в ответе не было ничего лишнего, только то что возвращает функция
+}
+// global $wpdb;
+
+// // $wpdb->show_errors();
+// if(($wpdb->update('ls_temp', array('id' => 1, 'name' => 'newtitle'), array('%s'))) === true){
+// 	echo "true";
+// }
+// // $wpdb->print_error();
+
+// echo "false";//'({"asd": "asdasd"})';
 // $wpdb->update( {table, {data, {where );
 // {newtitle = 'My updated post title';
 // {newcontent = 'My new content';
