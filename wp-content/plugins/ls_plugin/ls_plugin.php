@@ -91,56 +91,55 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 	add_action('wp_ajax_axaj_puller', 'axaj_puller_callback');
 	function axaj_puller_callback() {
+		$ls_relations = Array(
+				'id' => 'fave_property_id',
+				'address' => 'fave_property_map_address',
+				'bedrooms' => 'fave_property_bedrooms',
+				'bathrooms' => 'fave_property_bathrooms',
+				'propertysize' => 'fave_property_size'
+			);
+		$ls_posts = Array(
+				'name1' => 'post_title'
+			);
+		$ls_cats = Array(
+
+			);
 		global $wpdb;
 		$az_json = $_POST['az_json'];
-		update_option('ls_database_url', $_POST['ls_database_url']);
 		// print_r($az_json);
-		// if($wpdb->update($wpdb->posts, array('post_title' => 'anzar post2', 'post_content' => 'anzar content'), array('ID' => $az_json['id']))){
-			// $temp_id = $az_json['id'];
+		update_option('ls_database_url', $_POST['ls_database_url']);
 
-		// echo 'asd';
 		foreach ($az_json as $value){
-			// print_r($value);
-			// $query = new WP_Query({'p' => $value["id"]);
-			// $posts = get_posts(array( 'id' => $value["id"] ));
-			// if( $posts ){
-			$query = new WP_Query( array( 'meta_key' => 'id', 'meta_value' => $value['id'] ) );
-			if($query->have_posts()){
-				$query->the_post();
-				// update_post_meta($wpdb->insert_id, )
-				print_r($query);
-			} else {
-				$wpdb->insert($wpdb->posts, array('post_title' => '1', 'post_content' => '2', 'post_type'=>'property'), array('%s', '%s', '%s'));
-					$ls_post_id = $wpdb->insert_id;
-					// print_r($ls_post_id);
-					$additional_features = Array();
-					foreach( $value as $key=>$item ){
-						$additional_features[] = Array();
-						$additional_features[count($additional_features)-1]['fave_additional_feature_title'] = $key;
-						$additional_features[count($additional_features)-1]['fave_additional_feature_value'] = $item;
-					}
-					update_post_meta($ls_post_id, 'fave_additional_features_enable', 'enable');
-					update_post_meta($ls_post_id, 'additional_features', $additional_features);
+			$value2 = Array();
+			foreach($ls_relations as $rel_key=>$rel_val){
+				$value2[$rel_val] = $value[$rel_key];
+				unset($value[$rel_key]);
 			}
-				// foreach( $value as $key=>$item ){
-
-			// 		setup_postdata( $post )
-			// 		$query->the_post();
-			// 		// next($value);
-			// 		while ($cur_val = current($value)) {
-			// 	    	update_field(key($value), $cur_val);
-			// 		    next($value);
-			// 		}
-				// }
-			// }
+			$value3 = Array();
+			foreach($ls_posts as $posts_key=>$posts_val){
+				$value3[$posts_val] = $value[$posts_key];
+				unset($value[$posts_key]);
+			}
+			$wp_query = new WP_Query( array( 'meta_key' => 'fave_property_id', 'meta_value' => $value2['fave_property_id'] ));
+			if($wp_query->have_posts()){
+				$wp_query->the_post();
+				print_r($wp_query);
+			} else {
+				$wpdb->insert($wpdb->posts, array('post_title' => $value3['post_title'], 'post_type'=>'property'), array('%s', '%s'));
+				$ls_post_id = $wpdb->insert_id;
+				foreach( $value2 as $value2_key=>$value2_item ){
+					update_post_meta($ls_post_id, $value2_key, $value2_item);
+				}
+				$additional_features = Array();
+				foreach( $value as $value_key=>$value_item ){
+					$additional_features[] = Array();
+					$additional_features[count($additional_features)-1]['fave_additional_feature_title'] = $value_key;
+					$additional_features[count($additional_features)-1]['fave_additional_feature_value'] = $value_item;
+				}
+				update_post_meta($ls_post_id, 'fave_additional_features_enable', 'enable');
+				update_post_meta($ls_post_id, 'additional_features', $additional_features);
+			}
 		}
-			
-			// print_r($query);
-		// 	echo "База успешно синхронизованна $temp_id";
-		// }else{
-		// 	echo 'База не синхронизованна';
-		// }
-		// echo $wpdb->posts;
 		wp_die();
 	}
 
