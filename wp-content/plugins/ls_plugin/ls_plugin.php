@@ -154,7 +154,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 			foreach( $value4 as $value4_key=>$value4_item ){
 				wp_set_object_terms( $ls_post_id, $value4_item, $value4_key, false );
 			}
-			print_r($value4);
+			// print_r($value4);
 			/*fill the property*/
 
 		}

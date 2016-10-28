@@ -55,7 +55,7 @@ $(document).ready(function(){
             success: function (data) {
             	// var temp = eval(data);
                 // alert(temp.asd);
-                alert(data);
+                alert('Данные успешно добавлены');
             }
         });
   		return false;
