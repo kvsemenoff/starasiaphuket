@@ -47,17 +47,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 
 	function ajax_puller_page(){
-		// global $post, $prop_images;
-		// $prop_images        = get_post_meta( 271 );
-		// // print_r($prop_images);
-		// var_dump($prop_images);
-		// echo '<br>';
-		// $additional_features = get_post_meta( 271, 'additional_features', true );
-		// print_r($additional_features);
-		// echo '<br>';
-		// foreach( $additional_features as $ad_del ):
-  //           echo '<li><strong>'.esc_attr( $ad_del['fave_additional_feature_title'] ).':</strong> '.esc_attr( $ad_del['fave_additional_feature_value'] ).'</li>';
-  //       endforeach;
 ?>
 		<link rel="stylesheet" href="<?php echo plugins_url( 'css/style.css', __FILE__ ) ?>">
 		<script src="<?php echo plugins_url( 'js/jquery-3.1.1.min.js', __FILE__ ) ?>"></script>
@@ -91,25 +80,30 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 	add_action('wp_ajax_axaj_puller', 'axaj_puller_callback');
 	function axaj_puller_callback() {
+		// $wp_reset_query();
 		$ls_relations = Array(
 				'id' => 'fave_property_id',
 				'address' => 'fave_property_map_address',
 				'bedrooms' => 'fave_property_bedrooms',
 				'bathrooms' => 'fave_property_bathrooms',
-				'propertysize' => 'fave_property_size'
+				'propertysize' => 'fave_property_size',
+				'location' => 'fave_property_location',
+				'price_sale' => 'fave_property_price'
 			);
 		$ls_posts = Array(
 				'name1' => 'post_title'
 			);
 		$ls_cats = Array(
-
+				'type' => 'property_type'
 			);
+
 		global $wpdb;
 		$az_json = $_POST['az_json'];
-		// print_r($az_json);
-		update_option('ls_database_url', $_POST['ls_database_url']);
+		update_option('ls_database_url', $_POST['ls_database_url']); //update data url
 
 		foreach ($az_json as $value){
+
+			/*separation data*/
 			$value2 = Array();
 			foreach($ls_relations as $rel_key=>$rel_val){
 				$value2[$rel_val] = $value[$rel_key];
@@ -120,25 +114,49 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 				$value3[$posts_val] = $value[$posts_key];
 				unset($value[$posts_key]);
 			}
-			$wp_query = new WP_Query( array( 'meta_key' => 'fave_property_id', 'meta_value' => $value2['fave_property_id'] ));
-			if($wp_query->have_posts()){
-				$wp_query->the_post();
-				print_r($wp_query);
+			$value3['post_type'] = 'property';
+			$value4 = Array();
+			foreach($ls_cats as $cats_key=>$cats_val){
+				$value4[$cats_val] = $value[$cats_key];
+				unset($value[$cats_key]);
+			}
+			/*separation data*/
+
+			/*is it new item?*/
+			wp_reset_query(); 
+			$args = array( 'meta_key' => 'fave_property_id', 'meta_value' => $value2['fave_property_id'], 'post_type' => 'property');
+			$query = new WP_Query( $args );
+			if($query->have_posts()){
+				$query->the_post();
+				$ls_post_id = get_the_ID();
+				$args2 = Array();
 			} else {
 				$wpdb->insert($wpdb->posts, array('post_title' => $value3['post_title'], 'post_type'=>'property'), array('%s', '%s'));
 				$ls_post_id = $wpdb->insert_id;
-				foreach( $value2 as $value2_key=>$value2_item ){
-					update_post_meta($ls_post_id, $value2_key, $value2_item);
-				}
-				$additional_features = Array();
-				foreach( $value as $value_key=>$value_item ){
-					$additional_features[] = Array();
-					$additional_features[count($additional_features)-1]['fave_additional_feature_title'] = $value_key;
-					$additional_features[count($additional_features)-1]['fave_additional_feature_value'] = $value_item;
-				}
-				update_post_meta($ls_post_id, 'fave_additional_features_enable', 'enable');
-				update_post_meta($ls_post_id, 'additional_features', $additional_features);
 			}
+			/*is it new item?*/
+
+			/*fill the property*/
+			$value3['ID'] = $ls_post_id;
+			wp_update_post($value3);
+			foreach( $value2 as $value2_key=>$value2_item ){
+				update_post_meta($ls_post_id, $value2_key, $value2_item);
+			}
+			$additional_features = Array();
+			foreach( $value as $value_key=>$value_item ){
+				$additional_features[] = Array();
+				$additional_features[count($additional_features)-1]['fave_additional_feature_title'] = $value_key;
+				$additional_features[count($additional_features)-1]['fave_additional_feature_value'] = $value_item;
+			}
+			update_post_meta($ls_post_id, 'fave_additional_features_enable', 'enable');
+			update_post_meta($ls_post_id, 'additional_features', $additional_features);
+
+			foreach( $value4 as $value4_key=>$value4_item ){
+				wp_set_object_terms( $ls_post_id, $value4_item, $value4_key, false );
+			}
+			print_r($value4);
+			/*fill the property*/
+
 		}
 		wp_die();
 	}
