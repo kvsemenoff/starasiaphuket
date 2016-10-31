@@ -56,7 +56,7 @@ if( $keyword_field == 'prop_title' ) {
                 </div>
             </div>
 
-            <?php if( $adv_show_hide['cities'] != 1 ) { ?>
+            <?php if( 0/*$adv_show_hide['cities'] != 1*/ ) { ?>
             <div class="col-md-3 col-sm-3 col-xs-6">
                 <div class="form-group">
                 <select name="location" class="selectpicker" data-live-search="false" data-live-search-style="begins">
@@ -83,7 +83,7 @@ if( $keyword_field == 'prop_title' ) {
             <?php } ?>
 
 
-            <?php if( $adv_show_hide['areas'] != 1 ) { ?>
+            <?php if( 0/*$adv_show_hide['areas'] != 1*/ ) { ?>
             <div class="col-sm-3 col-xs-6">
                 <div class="form-group">
                     <select name="area" class="selectpicker" data-live-search="false" data-live-search-style="begins">
@@ -110,7 +110,7 @@ if( $keyword_field == 'prop_title' ) {
             <?php } ?>
 
 
-            <?php if( $adv_show_hide['status'] != 1 ) { ?>
+            <?php if( 0/*$adv_show_hide['status'] != 1*/ ) { ?>
             <div class="col-sm-3 col-xs-6">
                 <div class="form-group">
                     <select class="selectpicker" name="status" data-live-search="false" data-live-search-style="begins">
@@ -174,7 +174,7 @@ if( $keyword_field == 'prop_title' ) {
             </div>
             <?php } ?>
 
-            <?php if( $adv_show_hide['baths'] != 1 ) { ?>
+            <?php if( 0/*$adv_show_hide['baths'] != 1*/ ) { ?>
             <div class="col-sm-3 col-xs-6">
                 <div class="form-group">
                     <select name="bathrooms" class="selectpicker" data-live-search="false" data-live-search-style="begins" title="">
@@ -186,7 +186,7 @@ if( $keyword_field == 'prop_title' ) {
             <?php } ?>
 
 
-            <?php if( $adv_show_hide['min_area'] != 1 ) { ?>
+            <?php if( 0/*$adv_show_hide['min_area'] != 1*/ ) { ?>
             <div class="col-sm-3 col-xs-6">
                 <div class="form-group">
                     <input type="text" class="form-control" value="<?php echo isset ( $_GET['min-area'] ) ? $_GET['min-area'] : ''; ?>" name="min-area" placeholder="<?php echo $houzez_local['min_area']; ?>">
@@ -194,7 +194,7 @@ if( $keyword_field == 'prop_title' ) {
             </div>
             <?php } ?>
 
-            <?php if( $adv_show_hide['max_area'] != 1 ) { ?>
+            <?php if( 0/*$adv_show_hide['max_area'] != 1*/ ) { ?>
             <div class="col-sm-3 col-xs-6">
                 <div class="form-group">
                     <input type="text" class="form-control" value="<?php echo isset ( $_GET['max-area'] ) ? $_GET['max-area'] : ''; ?>" name="max-area" placeholder="<?php echo $houzez_local['max_area']; ?>">
@@ -202,13 +202,13 @@ if( $keyword_field == 'prop_title' ) {
             </div>
             <?php } ?>
 
-            <div class="col-sm-3 col-xs-6 sech_avl_date">
+            <!-- <div class="col-sm-3 col-xs-6 sech_avl_date">
                 <div class="form-group">
                     <div class="input-calendar input-icon input-icon-right">
                         <input name="publish_date" class="form-control search-date" placeholder="<?php echo $houzez_local['available_from']; ?>" type="text">
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <?php if( $adv_search_price_slider != 0 ) { ?>
                 <?php if( $adv_show_hide['price_slider'] != 1 ) { ?>
