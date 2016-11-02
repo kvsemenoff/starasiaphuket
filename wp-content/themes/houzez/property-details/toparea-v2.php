@@ -6,6 +6,22 @@
  * Date: 08/01/16
  * Time: 2:46 PM
  */
+global $ls_en_ru;
+$ls_add = get_post_meta( get_the_ID(), 'additional_features', true );
+$ls_beds = get_post_meta( get_the_ID(), 'fave_property_bedrooms', true );
+$ls_title_temp = 'нет названия';
+$ls_stars = 0;
+$ls_date_check = '';
+foreach ($ls_add as $ls_add_value) {
+    if($ls_add_value['fave_additional_feature_title'] == $ls_en_ru["name2"])
+        $ls_title_second = esc_attr( $ls_add_value['fave_additional_feature_value'] );
+    if($ls_add_value['fave_additional_feature_title'] == $ls_en_ru["stars"])
+        $ls_stars = (int)esc_attr( $ls_add_value['fave_additional_feature_value'] );
+    if($ls_add_value['fave_additional_feature_title'] == $ls_en_ru["date_check"])
+        $ls_date_check = esc_attr( $ls_add_value['fave_additional_feature_value'] );
+}
+
+
 global $post, $property_map, $property_streetView, $prop_address, $prop_agent_email;
 
 $featured_img = houzez_get_image_url('houzez-imageSize1170_738');
@@ -66,7 +82,11 @@ if( $prop_default_active_tab == "image_gallery" ) {
                         <div class="header-left table-cell">
 
                             <?php get_template_part('inc/breadcrumb'); ?>
-                            <div class="table-cell"><h1><?php the_title(); ?></h1></div>
+                            <?php
+                            $ls_title = esc_attr( get_the_title() );
+                            $ls_title = $ls_title?$ls_title:$ls_title_second;
+                            ?>
+                            <div class="table-cell"><h1 class="az-title1"><?=$ls_title?></h1></div>
 
                             <div class="table-cell">
                                 <ul class="actions">

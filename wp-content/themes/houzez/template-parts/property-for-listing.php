@@ -10,11 +10,14 @@ $ls_add = get_post_meta( get_the_ID(), 'additional_features', true );
 $ls_beds = get_post_meta( get_the_ID(), 'fave_property_bedrooms', true );
 $ls_title_temp = 'нет названия';
 $ls_stars = 0;
+$ls_date_check = '';
 foreach ($ls_add as $ls_add_value) {
     if($ls_add_value['fave_additional_feature_title'] == $ls_en_ru["name2"])
         $ls_title_second = esc_attr( $ls_add_value['fave_additional_feature_value'] );
     if($ls_add_value['fave_additional_feature_title'] == $ls_en_ru["stars"])
         $ls_stars = (int)esc_attr( $ls_add_value['fave_additional_feature_value'] );
+    if($ls_add_value['fave_additional_feature_title'] == $ls_en_ru["date_check"])
+        $ls_date_check = esc_attr( $ls_add_value['fave_additional_feature_value'] );
 }
 // $ls_beds = get_post_meta( get_the_ID(), 'fave_property_bedrooms', true );
 // print_r($ls_add);
@@ -65,8 +68,8 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
                             get_template_part('template-parts/listing', 'status' );
                         ?>
                     </div>
-
-                    <div class="price hide-on-list"><?php echo houzez_listing_price_v1(); ?></div>
+                        <!-- class  hide-on-list -->
+                    <div class="price"><?php echo houzez_listing_price_v1(); ?></div>
                     <a class="hover-effect" href="<?php the_permalink() ?>">
                         <?php
                         if( has_post_thumbnail( $post->ID ) ) {
@@ -95,10 +98,10 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
                     
                     $ls_title = esc_attr( get_the_title() );
                     $ls_title = $ls_title?$ls_title:$ls_title_second;
-                    echo '<h2 class="property-title"><a href="'.esc_url( get_permalink() ).'">'. $ls_title. '</a></h2>';
+                    echo '<h2 class="property-title"><a href="'.esc_url( get_permalink() ).'" class="az-title1">'.$ls_title. '</a></h2>';
 
                     if( !empty( $ls_beds /*$prop_address*/ )) {
-                        echo '<address class="property-address">Количество спален: '.esc_attr( $ls_beds ).'</address>';
+                        echo '<address class="property-address az-text1">Количество спален: '.esc_attr( $ls_beds ).'</address>';
                     }
                     ?>
                 </div>
@@ -114,6 +117,12 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
                     ?>                    
                     <?php //echo houzez_listing_meta_v1(); ?>
                     <p><?php //echo houzez_taxonomy_simple('property_type'); ?></p>
+                </div>
+                <div class="info-row amenities hide-on-grid">
+                    <?php if($ls_date_check): ?>
+                        <div class="az-stamp"><?=$ls_date_check?></div>
+                    <?php endif; ?>
+                    
                 </div>
                 <!-- <div class="info-row date hide-on-grid">
                     <?php if( !empty( $prop_agent ) ) { ?>
@@ -132,7 +141,16 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
             </div>
 
             <div class="table-list full-width hide-on-list">
-                <div class="cell">
+                <?php
+                    for($i=0; $i<$ls_stars; $i++){
+                        // if($i<$ls_stars){
+                            echo '<img src="'.get_template_directory_uri().'/images/az-star-yellow2.png" alt="">';
+                        // } else {
+                        //     echo '<img src="images/az-star-grey2.png" alt="">';
+                        // }
+                    }
+                ?>  
+                <!-- <div class="cell">
                     <div class="info-row amenities">
                         <?php echo houzez_listing_meta_v1(); ?>
                         <p><?php echo houzez_taxonomy_simple('property_type'); ?></p>
@@ -143,12 +161,12 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
                     <div class="phone">
                         <a href="<?php echo esc_url( get_permalink() ); ?>" class="btn btn-primary"> <?php esc_html_e( 'Details', 'houzez' ); ?> <i class="fa fa-angle-right fa-right"></i></a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
 
-    <div class="item-foot date hide-on-list">
+    <!-- <div class="item-foot date hide-on-list">
         <div class="item-foot-left">
             <?php if( !empty( $prop_agent ) ) { ?>
                 <p><i class="fa fa-user"></i> <a href="<?php echo esc_url($prop_agent_link); ?>"><?php echo esc_attr( $prop_agent ); ?></a></p>
@@ -157,5 +175,5 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
         <div class="item-foot-right">
             <p><i class="fa fa-calendar"></i><?php printf( __( '%s ago', 'houzez' ), human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) ); ?></p>
         </div>
-    </div>
+    </div> -->
 </div>

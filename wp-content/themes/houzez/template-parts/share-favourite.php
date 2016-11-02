@@ -13,16 +13,16 @@ $ls_terms = get_the_terms(get_the_id(), $ls_cats['type']);
 
 global $post, $prop_images, $houzez_local, $current_page_template, $taxonomy_name;
 ?>
-<ul class="list-unstyled actions pull-right">
+<ul class="list-unstyled actions pull-right ">
   <?php foreach ($ls_property as $ls_property_value): ?>
     <?php if($ls_property_value['fave_additional_feature_title'] == $ls_en_ru['code_id']): ?>
-      <li>
+      <li class="az-text1">
         <?=$ls_property_value['fave_additional_feature_value']?>
       </li>
     <?php elseif($ls_property_value['fave_additional_feature_title'] == $ls_en_ru['area']): ?>
-      <li>
+      <li class="az-text1">
         <?=$ls_property_value['fave_additional_feature_value']?>
-      </li>
+      </li class="az-text1">
     <?php endif; ?>
   <?php endforeach; ?>
   
