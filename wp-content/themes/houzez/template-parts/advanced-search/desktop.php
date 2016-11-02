@@ -208,8 +208,26 @@ $keyword_field = houzez_option('keyword_field');
                             </div>
 
 
+                                <select class="selectpicker" name="type" data-live-search="false" data-live-search-style="begins">
+                                <?php
+                                // All Option
+                                echo '<option value="">'.$houzez_local['all_types'].'</option>';
 
-                                <?php if( $adv_show_hide['cities'] != 1 ) { ?>
+                                $prop_type = get_terms (
+                                    array(
+                                        "property_type"
+                                    ),
+                                    array(
+                                        'orderby' => 'name',
+                                        'order' => 'ASC',
+                                        'hide_empty' => false,
+                                        'parent' => 0
+                                    )
+                                );
+                                houzez_hirarchical_options('property_type', $prop_type, $type );
+                                ?>
+                                </select>
+                                <?php if( 0/*$adv_show_hide['cities'] != 1*/ ) { ?>
                                 <select name="location" class="selectpicker" data-live-search="false" data-live-search-style="begins">
                                 <?php
                                 // All Option
@@ -265,6 +283,74 @@ $keyword_field = houzez_option('keyword_field');
                             <button class="btn btn-orange"><?php echo $houzez_local['go']; ?></button>
                         </div>
                     </div>
+                    <div class="az-form-group_style" >
+                        <!-- <div class="search"> -->
+                            <div class="row">
+                                <?php if( $adv_show_hide['beds'] != 1 ) { ?>
+                                <div class="col-sm-3 col-xs-6">
+                                    <div class="">
+                                        <select name="bedrooms" class="selectpicker" data-live-search="false" data-live-search-style="begins" title="">
+                                            <option value=""><?php echo $houzez_local['beds']; ?></option>
+                                            <?php houzez_number_list('bedrooms'); ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                               <?php if( $adv_search_price_slider != 0 ) { ?>
+                                    <?php if( $adv_show_hide['price_slider'] != 1 ) { ?>
+                                        <div class="col-sm-6 col-xs-6">
+                                            <div class="">
+                                                <div class="range-text">
+                                                    <input type="hidden" name="min-price" class="min-price-range-hidden range-input" readonly >
+                                                    <input type="hidden" name="max-price" class="max-price-range-hidden range-input" readonly >
+                                                    <p><span class="range-title"><?php echo $houzez_local['price_range']; ?></span> <?php echo $houzez_local['from']; ?> <span class="min-price-range"></span> <?php echo $houzez_local['to'];?> <span class="max-price-range"></span></p>
+                                                </div>
+                                                <div class="range-wrap">
+                                                    <div class="price-range-advanced"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                <?php } else { ?>
+
+                                    <?php if( $adv_show_hide['min_price'] != 1 ) { ?>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="prices-for-all">
+                                            <select name="min-price" class="selectpicker" data-live-search="false" data-live-search-style="begins" title="">
+                                                <option value=""><?php echo $houzez_local['min_price']; ?></option>
+                                                <?php houzez_min_price_list(); ?>
+                                            </select>
+                                        </div>
+                                        <div class="hide prices-only-for-rent">
+                                            <select name="min-price" class="selectpicker" data-live-search="false" data-live-search-style="begins" title="">
+                                                <option value=""><?php echo $houzez_local['min_price']; ?></option>
+                                                <?php houzez_min_price_list_for_rent(); ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+
+                                    <?php if( $adv_show_hide['max_price'] != 1 ) { ?>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <div class="form-group prices-for-all">
+                                            <select name="max-price" class="selectpicker" data-live-search="false" data-live-search-style="begins" title="">
+                                                <option value=""><?php echo $houzez_local['max_price']; ?></option>
+                                                <?php houzez_max_price_list() ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group hide prices-only-for-rent">
+                                            <select name="max-price" class="selectpicker" data-live-search="false" data-live-search-style="begins" title="">
+                                                <option value=""><?php echo $houzez_local['max_price']; ?></option>
+                                                <?php houzez_max_price_list_for_rent() ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <?php } ?>
+
+                                <?php } ?>
+                            </div>
+                        <!-- </div> -->
+                    </div>
                     <?php } ?>
 
                     <div class="advance-fields">
@@ -296,7 +382,7 @@ $keyword_field = houzez_option('keyword_field');
                             </div>
                             <?php } ?>
 
-                            <?php if( $adv_show_hide['type'] != 1 ) { ?>
+                            <?php if( 0/*$adv_show_hide['type'] != 1*/ ) { ?>
                             <div class="col-sm-3 col-xs-6">
                                 <div class="form-group">
                                     <select class="selectpicker" name="type" data-live-search="false" data-live-search-style="begins">
@@ -330,7 +416,7 @@ $keyword_field = houzez_option('keyword_field');
                                 </div>-->
                             <?php //} ?>
 
-                            <?php if( $adv_show_hide['beds'] != 1 ) { ?>
+                            <?php if( 0/*$adv_show_hide['beds'] != 1*/ ) { ?>
                             <div class="col-sm-3 col-xs-6">
                                 <div class="form-group">
                                     <select name="bedrooms" class="selectpicker" data-live-search="false" data-live-search-style="begins" title="">
@@ -368,7 +454,7 @@ $keyword_field = houzez_option('keyword_field');
                             </div>
                             <?php } ?>
 
-                            <?php if( $adv_search_price_slider != 0 ) { ?>
+                            <?php if( 0/*$adv_search_price_slider != 0*/ ) { ?>
                                 <?php if( $adv_show_hide['price_slider'] != 1 ) { ?>
                                     <div class="col-sm-6 col-xs-6">
                                         <div class="range-advanced-main">
@@ -383,7 +469,7 @@ $keyword_field = houzez_option('keyword_field');
                                         </div>
                                     </div>
                                 <?php } ?>
-                            <?php } else { ?>
+                            <?php } elseif(0/**/) { ?>
 
                                 <?php if( $adv_show_hide['min_price'] != 1 ) { ?>
                                 <div class="col-sm-3 col-xs-6">

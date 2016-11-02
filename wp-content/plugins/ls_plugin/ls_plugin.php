@@ -23,6 +23,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 */
 
+	require_once "inc/data.php";
+
 	register_activation_hook( __FILE__ , 'ls_plugin_activate' );
 	function ls_plugin_activate() {
 		add_option('ls_database_url', '');
@@ -92,73 +94,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 		
 <?php
 	}
-
+		
 
 
 	add_action('wp_ajax_axaj_puller', 'axaj_puller_callback');
 	function axaj_puller_callback() {
-		// require_once(ABSPATH .'wp-admin/includes/media.php');
-		// require_once(ABSPATH .'wp-admin/includes/file.php');
-		// require_once(ABSPATH .'wp-admin/includes/image.php');
 		// $wp_reset_query();
-		// 1 - the field marked with '1' may be writen from many fields 
-
-		/*arrays for separating array $az_json*/
-		$ls_MtoM = Array(
-				'fave_property_price' => 0 //1
-			);
-		$ls_relations = Array(
-				'id' => 'fave_property_id',
-				'address' => ['fave_property_address', 'fave_property_map_address'],
-				'bedrooms' => 'fave_property_bedrooms',
-				'bathrooms' => 'fave_property_bathrooms',
-				'propertysize' => 'fave_property_size',
-				'gps' => 'fave_property_location',
-				'price_sale' => 'fave_property_price',
-				'price_longterm' => 'fave_property_price',
-				'price_spec' => 'fave_property_price',
-				'price_month' => 'fave_property_price',
-				'price_week' => 'fave_property_price',
-				'price_day' => 'fave_property_price'
-			);
-		$ls_posts = Array(
-				'name1' => 'post_title',
-				'descr' => 'post_content'
-			);
-		$ls_cats = Array(
-				'type' => 'property_type'
-			);
-		$ls_thumbnail = 'img';
-		$ls_en_ru = Array(
-				'pool' => 'Бассейн',
-				'tobeach' => 'До пляжа',
-				'seaview' => 'Вид на море',
-				'parking' => 'Парковка',
-				'security' => 'Охрана',
-				'cleaning' => 'Уборка',
-				'changetowels' => 'Замена белья',
-				'laundry' => 'Стирка',
-				'cpayments' => 'Коммунальные платежи',
-				'date_reg' => 'Дата добавления',
-				'date_check' => 'Дата проверки',
-				'rating' => 'Рейтинг',
-				'price_day' => 'Цена по дням',
-				'price week' => 'Цена по неделям',
-				'price_month' => 'Цена по месяцам',
-				'price_longterm' => 'Цена на 6+',
-				'price_sale' => 'Цена продажи',
-				'price_spec' => 'Цена спец',
-				'stars' => 'Количество звезд',
-				'guests' => 'Количество гостей',
-		        'livingsize' => 'Жилая площадь',
-		        'propertysize' => 'Общая площадь',
-			);
-		$remove = Array(
-				'card_id', 'card_name', 'code_id', 'code_name', 'list_id', 'list_name', 'area_code', 'area', 'name1_en', 'name2', 'name2_en', 'cleaning_en', 'changetowels_en', 'loundry_en', 'cpayments_en', 'descr_en', 'descr_internal', 'contacts'
-			);
-		/*arrays for separating array $az_json*/
-
-		global $wpdb;
+		global $wpdb, $remove, $ls_thumbnail, $ls_cats, $ls_posts, $ls_relations, $ls_MtoM, $ls_en_ru;
 		$az_json = $_POST['az_json'];
 		update_option('ls_database_url', $_POST['ls_database_url']); //update data url
 		foreach ($az_json as $value){
