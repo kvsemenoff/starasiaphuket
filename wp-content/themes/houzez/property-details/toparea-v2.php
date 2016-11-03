@@ -6,9 +6,11 @@
  * Date: 08/01/16
  * Time: 2:46 PM
  */
-global $ls_en_ru;
+global $ls_en_ru, $ls_cats, $type_to_icon;
 $ls_add = get_post_meta( get_the_ID(), 'additional_features', true );
+$ls_property = &$ls_add;
 $ls_beds = get_post_meta( get_the_ID(), 'fave_property_bedrooms', true );
+$ls_terms = get_the_terms(get_the_id(), $ls_cats['type']);
 $ls_title_temp = 'нет названия';
 $ls_stars = 0;
 $ls_date_check = '';
@@ -97,11 +99,27 @@ if( $prop_default_active_tab == "image_gallery" ) {
                                             <span id="houzez-print" data-propid="<?php esc_attr_e( $post->ID );?>"><i class="fa fa-print"></i></span>
                                         </li>
                                     <?php } ?>
+                                    <?php foreach ($ls_terms as $ls_terms_value): ?>
+                                        <li>
+                                          <span data-toggle="tooltip" data-placement="top" data-original-title="<?php echo $ls_terms_value->name; ?>"><?= $type_to_icon[$ls_terms_value->name] ?></span>
+                                        </li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </div>
-
+                            <address class="property-address"><?php foreach ($ls_property as $ls_property_value): ?>
+                                <?php if($ls_property_value['fave_additional_feature_title'] == $ls_en_ru['code_id']): ?>
+                                  <span class="az-text1">
+                                    <?=$ls_property_value['fave_additional_feature_value']?>
+                                  </span>
+                                <?php elseif($ls_property_value['fave_additional_feature_title'] == $ls_en_ru['area']): ?>
+                                  <span class="az-text1">
+                                    <?=$ls_property_value['fave_additional_feature_value']?>
+                                  </span class="az-text1">
+                                <?php endif; ?>
+                              <?php endforeach; ?>
+                            </address>
                             <?php
-                            if( !empty( $prop_address )) {
+                            if( 0/*!empty( $prop_address )*/) {
                                 echo '<address class="property-address">'.esc_attr( $prop_address ).'</address>';
                             } ?>
                         </div>

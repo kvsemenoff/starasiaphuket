@@ -22,7 +22,8 @@ $prop_description = get_the_content();
     <ul class="detail-tabs">
         <?php
         $i = 0;
-        if ($layout): foreach ($layout as $key => $value) {
+
+        if (0/*$layout*/): foreach ($layout as $key => $value) {
 
             if( $i == 1 ) { $li_start = '<li class="active">'; } else { $li_start = '<li>'; }
 

@@ -22,7 +22,7 @@
   -o-transform: rotate(-45deg);
   /* Opera */
   transform: rotate(-45deg);
-  font-size: 30px;
+  font-size: 16px;
   color: #c00;
   background: #fff;
   border: solid 4px #c00;
@@ -34,5 +34,20 @@
   -webkit-text-shadow: 0 0 2px #c00;
   text-shadow: 0 0 2px #c00;
   box-shadow: 0 0 2px #c00; }
+
+.az-stamp_style {
+  top: 34px;
+  font-size: 16px;
+  border: solid 2px #c00; }
+
+.az-rel {
+  position: relative; }
+
+@media only screen and (min-width: 768px) {
+  .az-stamp {
+    font-size: 30px; }
+
+  .az-stamp_style {
+    font-size: 16px; } }
 
 /*# sourceMappingURL=style.css.map */

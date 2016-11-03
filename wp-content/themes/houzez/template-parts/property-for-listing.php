@@ -85,7 +85,7 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
                 </figure>
             </div>
         </div>
-        <div class="item-body table-cell">
+        <div class="item-body table-cell az-rel">
 
             <div class="body-left table-cell">
                 <div class="info-row">
@@ -138,6 +138,7 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
                 <div class="info-row phone text-right">
                     <a href="<?php echo esc_url( get_permalink() ); ?>" class="btn btn-primary"><?php esc_html_e( 'Details', 'houzez' ); ?> <i class="fa fa-angle-right fa-right"></i></a>
                 </div>
+
             </div>
 
             <div class="table-list full-width hide-on-list">
@@ -149,7 +150,10 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
                         //     echo '<img src="images/az-star-grey2.png" alt="">';
                         // }
                     }
-                ?>  
+                ?>
+                <?php if($ls_date_check): ?>
+                    <div class="az-stamp az-stamp_style"><?=$ls_date_check?></div>
+                <?php endif; ?> 
                 <!-- <div class="cell">
                     <div class="info-row amenities">
                         <?php echo houzez_listing_meta_v1(); ?>

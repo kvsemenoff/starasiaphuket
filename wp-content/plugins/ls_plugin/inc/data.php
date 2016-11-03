@@ -52,7 +52,9 @@
 			'price_spec' => 'fave_property_price',
 			'price_month' => 'fave_property_price',
 			'price_week' => 'fave_property_price',
-			'price_day' => 'fave_property_price'
+			'price_day' => 'fave_property_price',
+			'property_map' => 'fave_property_map',
+			'property_map_street' => 'fave_property_map_street_view'
 		);
 	$ls_posts = Array(
 			'name1' => 'post_title',
@@ -62,7 +64,11 @@
 			'type' => 'property_type'
 		);
 	$ls_thumbnail = 'img';
+	$ls_gallery = 'gallery';
 	$remove = Array(
 			'card_id', 'card_name', 'code_name', 'list_id', 'list_name', 'area_code', 'name1_en', 'name2_en', 'cleaning_en', 'changetowels_en', 'loundry_en', 'cpayments_en', 'descr_en', 'descr_internal', 'contacts'
+		);
+	$ls_show = Array(
+			''
 		);
 	/*arrays for separating array $az_json*/

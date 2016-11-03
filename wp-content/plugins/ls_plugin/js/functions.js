@@ -49,7 +49,12 @@ var az_json =
         price_longterm : '15000',
         price_sale : '',
         price_spec : '//',
-        img : 'http://www.kvartal.ru/img/showcase/39563387120_prv_7147862-S1-0015.jpg'
+        img : 'http://www.kvartal.ru/img/showcase/39563387120_prv_7147862-S1-0015.jpg',
+        gallery : [
+                    'http://rating35.ru/wp-content/uploads/2014/09/ocenka-kvartir.jpg',
+                    'http://www.avrealty.ru/images/today.jpg',
+                    'http://mydesigninfo.ru/wp-content/uploads/2015/12/1442451505sdf.jpg'
+                  ]
     },
     {
         id : '2',
@@ -100,6 +105,13 @@ var az_json =
         price_longterm : '15000',
         price_sale : '',
         price_spec : '//',
-        img : 'http://ngloriya.su/userfiles/images/kvartiry-velikom-novgorode-2-big.jpg'
+        img : 'http://ngloriya.su/userfiles/images/kvartiry-velikom-novgorode-2-big.jpg',
+        gallery : [
+                    'http://interiorizm.com/wp-content/uploads/2013/01/kvartira-v-odesse-02.jpg',
+                    'http://www.artihome.ru/img/gal12/maxi/1.jpg',
+                    'http://www.schelhotel.ru/images/stories/foto/1-12-1.jpg',
+                    'http://kvartirka.com/netcat_files/thumbs/flat/0/132/132815/662019_w468h312.jpg'
+                  ]
     }
 ];
+// alert(az_json[1].gallery);
