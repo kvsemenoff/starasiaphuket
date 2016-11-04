@@ -22,6 +22,7 @@ $google_map_address_url = "http://maps.google.com/?q=".$google_map_address;
     <span class="az-text1"><?php the_content(); ?></span>
 </div>
 <?php
+global $ls_print, $ls_show, $ls_ru_en;
 global $post_meta_data;
 
 $prop_id = get_post_meta( get_the_ID(), 'fave_property_id', true );
@@ -64,29 +65,33 @@ if( $prop_details ) {
     </div>
     <div class="alert alert-info">
         <ul class="list-three-col">
+
             <?php
-            if( !empty( $prop_id ) && $hide_detail_prop_fields['prop_id'] != 1 ) {
+            // global $ls_print, $ls_ru_en; 
+            if( 0/*!empty( $prop_id ) && $hide_detail_prop_fields['prop_id'] != 1 */) {
                 echo '<li><strong>'.esc_html__( 'Property ID:', 'houzez').'</strong> '.esc_attr( $prop_id ).'</li>';
             }
-            if( !empty( $prop_price ) && $hide_detail_prop_fields['sale_rent_price'] != 1 ) {
+            if( 0/*!empty( $prop_price ) && $hide_detail_prop_fields['sale_rent_price'] != 1*/ ) {
                 echo '<li><strong>'.esc_html__( 'Price:', 'houzez'). '</strong> '.houzez_listing_price().'</li>';
             }
             if( !empty( $prop_size ) && $hide_detail_prop_fields['area_size'] != 1 ) {
-                echo '<li><strong>'.esc_html__( 'Property Size:', 'houzez'). '</strong> '.houzez_property_size( 'after' ).'</li>';
+
+                $temp = $ls_print[$ls_ru_en['Общая площадь']](houzez_property_size( 'after' ));
+                echo '<li class="az-text1"><strong>'.esc_html__( 'Общая площадь:', 'houzez'). '</strong> '.$temp.'</li>';
             }
             if( !empty( $bedrooms ) && $hide_detail_prop_fields['bedrooms'] != 1 ) {
-                echo '<li><strong>'.esc_html__( 'Bedrooms:', 'houzez').'</strong> '.esc_attr( $bedrooms ).'</li>';
+                echo '<li class="az-text1"><strong>'.esc_html__( 'Количество спален:', 'houzez').'</strong> '.esc_attr( $bedrooms ).'</li>';
             }
             if( !empty( $bathrooms ) && $hide_detail_prop_fields['bathrooms'] != 1 ) {
-                echo '<li><strong>'.esc_html__( 'Bathrooms:', 'houzez').'</strong> '.esc_attr( $bathrooms ).'</li>';
+                echo '<li class="az-text1"><strong>'.esc_html__( 'Кол-во ванных комнат:', 'houzez').'</strong> '.esc_attr( $bathrooms ).'</li>';
             }
-            if( !empty( $garage ) && $hide_detail_prop_fields['garages'] != 1 ) {
+            if(0/* !empty( $garage ) && $hide_detail_prop_fields['garages'] != 1*/ ) {
                 echo '<li><strong>'.esc_html__( 'Garage:', 'houzez').'</strong> '.esc_attr( $garage ).'</li>';
             }
-            if( !empty( $garage_size ) && $hide_detail_prop_fields['garages'] != 1 ) {
+            if(0 /*!empty( $garage_size ) && $hide_detail_prop_fields['garages'] != 1*/ ) {
                 echo '<li><strong>'.esc_html__( 'Garage Size:', 'houzez').'</strong> '.esc_attr( $garage_size ).'</li>';
             }
-            if( !empty( $year_built ) && $hide_detail_prop_fields['year_built'] != 1 ) {
+            if(0 /*!empty( $year_built ) && $hide_detail_prop_fields['year_built'] != 1*/ ) {
                 echo '<li><strong>'.esc_html__( 'Year Built:', 'houzez').'</strong> '.esc_attr( $year_built ).'</li>';
             }
             ?>
@@ -99,8 +104,17 @@ if( $prop_details ) {
         </div>
         <ul class="list-three-col">
             <?php
+            
             foreach( $additional_features as $ad_del ):
-                echo '<li class="az-text1"><strong>'.esc_attr( $ad_del['fave_additional_feature_title'] ).':</strong> '.esc_attr( $ad_del['fave_additional_feature_value'] ).'</li>';
+                // echo $ls_show[$ls_ru_en[$ad_del['fave_additional_feature_title']]].":".$ad_del['fave_additional_feature_value']."<br>";
+                if($ls_show[$ls_ru_en[$ad_del['fave_additional_feature_title']]]){
+                    if($ls_print[$ls_ru_en[$ad_del['fave_additional_feature_title']]]){
+                        echo '<li class="az-text1"><strong>'.esc_attr( $ad_del['fave_additional_feature_title'] ).':</strong> '.$ls_print[$ls_ru_en[$ad_del['fave_additional_feature_title']]](esc_attr( $ad_del['fave_additional_feature_value']) ).'</li>';
+                    } else {
+                        echo '<li class="az-text1"><strong>'.esc_attr( $ad_del['fave_additional_feature_title'] ).':</strong> '.$ls_print['other'](esc_attr( $ad_del['fave_additional_feature_value']) ).'</li>';
+                    }
+                    
+                }
             endforeach;
             ?>
         </ul>
