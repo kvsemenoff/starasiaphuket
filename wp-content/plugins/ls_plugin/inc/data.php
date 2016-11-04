@@ -64,6 +64,14 @@
 			'Land' => '<i class="fa fa-building" aria-hidden="true"></i>',
 			'Single Family Home' => '<i class="fa fa-bed" aria-hidden="true"></i>'
 		);
+	$ls_prices = Array(
+			'price_day' => 1,
+			'price_week' => 1,
+			'price_month' => 1,
+			'price_longterm' => 1,
+			'price_sale' => 1,
+			'price_spec' => 1
+		);
 	$ls_en_ru = Array(
 			'pool' => 'Бассейн',
 			'tobeach' => 'Время до пляжа',
@@ -78,7 +86,7 @@
 			'date_check' => 'Дата проверки',
 			'rating' => 'Рейтинг',
 			'price_day' => 'Цена по дням',
-			'price week' => 'Цена по неделям',
+			'price_week' => 'Цена по неделям',
 			'price_month' => 'Цена по месяцам',
 			'price_longterm' => 'Цена на 6+',
 			'price_sale' => 'Цена продажи',
@@ -105,7 +113,7 @@
 			'Дата проверки'                         => 'date_check'     ,
 			'Рейтинг'                               => 'rating'         ,
 			'Цена по дням'                          => 'price_day'      ,
-			'Цена по неделям'                       => 'price week'     ,
+			'Цена по неделям'                       => 'price_week'     ,
 			'Цена по месяцам'                       => 'price_month'    ,
 			'Цена на 6+'                            => 'price_longterm' ,
 			'Цена продажи'                          => 'price_sale'     ,

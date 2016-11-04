@@ -82,7 +82,18 @@ if( $keyword_field == 'prop_title' ) {
             </div>
             <?php } ?>
 
-
+            <div class="col-sm-3 col-xs-6">
+                <div class="form-group az-text1">
+                    <select name="price_type" class="selectpicker az-text1" data-live-search="false" data-live-search-style="begins">
+                        <option value="price_sale">Цена продажи</option>
+                        <option value="price_day">Цена по дням</option>
+                        <option value="price_week">Цена по неделям</option>
+                        <option value="price_month">Цена по месяцам</option>
+                        <option value="price_longterm">Цена на 6+</option>
+                        <option value="price_spec">Цена спец</option>
+                    </select>
+                </div>
+            </div>
             <?php if( 0/*$adv_show_hide['areas'] != 1*/ ) { ?>
             <div class="col-sm-3 col-xs-6">
                 <div class="form-group">
@@ -158,6 +169,7 @@ if( $keyword_field == 'prop_title' ) {
                         );
                         houzez_hirarchical_options('property_type', $prop_type, $type );
                         ?>
+
                     </select>
                 </div>
             </div>

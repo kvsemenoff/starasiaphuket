@@ -70,6 +70,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 
 	function ajax_puller_page(){
+		// global $search_template;
+
 ?>
 		<link rel="stylesheet" href="<?php echo plugins_url( 'css/style.css', __FILE__ ) ?>">
 		<script src="<?php echo plugins_url( 'js/jquery-3.1.1.min.js', __FILE__ ) ?>"></script>
@@ -106,7 +108,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 	add_action('wp_ajax_axaj_puller', 'axaj_puller_callback');
 	function axaj_puller_callback() {
 		// $wp_reset_query();
-		global $wpdb, $remove, $ls_thumbnail, $ls_cats, $ls_posts, $ls_relations, $ls_MtoM, $ls_en_ru, $ls_gallery;
+		global $wpdb, $remove, $ls_thumbnail, $ls_cats, $ls_posts, $ls_relations, $ls_MtoM, $ls_en_ru, $ls_gallery, $ls_prices;
 		$az_json = $_POST['az_json'];
 		update_option('ls_database_url', $_POST['ls_database_url']); //update data url
 		foreach ($az_json as $value){
@@ -129,6 +131,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 			$ls_thumbnail_temp = $value[$ls_thumbnail];
 			$ls_gallery_temp = $value[$ls_gallery];
 			unset($value[$ls_thumbnail]);
+			$value1_1 = Array();
+			foreach($ls_relations as $rel_key=>$rel_val){
+				if($ls_prices[$rel_key]){
+					$value1_1[$rel_key] = $value[$rel_key];
+				}
+			}
 			$value2 = Array();
 			foreach($ls_relations as $rel_key=>$rel_val){
 				$real_value = $value[$rel_key];
@@ -193,6 +201,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 			// wp_update_post($value3);
 			// update_post_meta($ls_post_id, '_thumbnail_id', 'enable');
 			// echo $src;
+			print_r($value1_1);
+			foreach( $value1_1 as $value1_1_key=>$value1_1_item ){
+				update_post_meta($ls_post_id, $value1_1_key, $value1_1_item);
+			}
 
 			foreach( $value2 as $value2_key=>$value2_item ){
 				update_post_meta($ls_post_id, $value2_key, $value2_item);

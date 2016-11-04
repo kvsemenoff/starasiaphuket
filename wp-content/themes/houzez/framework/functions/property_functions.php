@@ -1989,6 +1989,22 @@ if( !function_exists('houzez_half_map_listings') ) {
         $publish_date = isset($_POST['publish_date']) ? sanitize_text_field($_POST['publish_date']) : '';
         $keyword_field = houzez_option('keyword_field');
 
+        /*ajax puller*/
+        $price_type = isset($_POST['price_type']) ? sanitize_text_field($_POST['price_type']) : '';
+        
+        if($price_type == 'price_sale'){
+            $price_type_field = 'fave_property_price';
+        } else {
+            $price_type_field = $price_type;
+            // global $ls_en_ru;
+            // $ls_add = get_post_meta( get_the_ID(), 'additional_features', true );
+            // foreach ($ls_add as $ls_add_value) {
+            //     if($ls_add_value['fave_additional_feature_title'] == $ls_en_ru[$price_type])
+            //         $ls_title_second = esc_attr( $ls_add_value['fave_additional_feature_value'] );
+            // }
+        }
+        /*ajax puller*/
+
         $prop_locations = array();
         houzez_get_terms_array( 'property_city', $prop_locations );
 
@@ -2169,7 +2185,7 @@ if( !function_exists('houzez_half_map_listings') ) {
 
             if( $min_price >= 0 && $max_price > $min_price ) {
                 $meta_query[] = array(
-                    'key' => 'fave_property_price',
+                    'key' => $price_type_field,//'fave_property_price',
                     'value' => array($min_price, $max_price),
                     'type' => 'NUMERIC',
                     'compare' => 'BETWEEN',
@@ -2179,7 +2195,7 @@ if( !function_exists('houzez_half_map_listings') ) {
             $min_price = doubleval( houzez_clean( $min_price ) );
             if( $min_price >= 0 ) {
                 $meta_query[] = array(
-                    'key' => 'fave_property_price',
+                    'key' => $price_type_field, //'fave_property_price',
                     'value' => $min_price,
                     'type' => 'NUMERIC',
                     'compare' => '>=',
@@ -2189,7 +2205,7 @@ if( !function_exists('houzez_half_map_listings') ) {
             $max_price = doubleval( houzez_clean( $max_price ) );
             if( $max_price >= 0 ) {
                 $meta_query[] = array(
-                    'key' => 'fave_property_price',
+                    'key' => $price_type_field,//'fave_property_price',
                     'value' => $max_price,
                     'type' => 'NUMERIC',
                     'compare' => '<=',

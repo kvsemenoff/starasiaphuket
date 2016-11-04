@@ -15,7 +15,13 @@ var addresstocoordination = function(city){
 
 $(document).ready(function(){
     
-
+for(var i=0; i<az_json.length; i++){
+    var temp_gps = az_json[i].gps.split(',');
+    az_json[i].gps = (Number(temp_gps[0]) + ((Math.random() * 20 - 10)/1000)) + ',' 
+                        + (Number(temp_gps[1]) + ((Math.random() * 20 - 10)/1000));
+    
+    // alert(temp_gps);
+}
     // var temp = [az_json, az_json2];
     // alert(temp.name1);
 
