@@ -5,12 +5,13 @@
  * Date: 16/12/15
  * Time: 6:21 PM
  */
-global $ls_en_ru;
+global $ls_en_ru ;
 $ls_add = get_post_meta( get_the_ID(), 'additional_features', true );
 $ls_beds = get_post_meta( get_the_ID(), 'fave_property_bedrooms', true );
 $ls_title_temp = 'нет названия';
 $ls_stars = 0;
 $ls_date_check = '';
+// $ls_price = ''
 foreach ($ls_add as $ls_add_value) {
     if($ls_add_value['fave_additional_feature_title'] == $ls_en_ru["name2"])
         $ls_title_second = esc_attr( $ls_add_value['fave_additional_feature_value'] );
@@ -69,7 +70,12 @@ if( is_page_template( 'template/property-listings-map.php' ) ) { $infobox_trigge
                         ?>
                     </div>
                         <!-- class  hide-on-list -->
-                    <div class="price"><?php echo houzez_listing_price_v1(); ?></div>
+                    <div class="price">
+                    <?php global $price_type; ?>
+                    <?php if($price_type){echo houzez_listing_price_v1($price_type);} else {echo houzez_listing_price_v1();} ?>
+                    <?php //echo houzez_listing_price_v1(); ?>
+                    </div>
+                    
                     <a class="hover-effect" href="<?php the_permalink() ?>">
                         <?php
                         if( has_post_thumbnail( $post->ID ) ) {

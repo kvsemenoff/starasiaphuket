@@ -29,6 +29,10 @@ if( isset( $_GET['location'] ) ) {
 if( isset( $_GET['area'] ) ) {
     $area = $_GET['area'];
 }
+// if( isset( $_GET['area'] ) ) {
+//     $price_type = $_GET['price_type'];
+// }
+
 $keyword_field = houzez_option('keyword_field');
 
 if( $keyword_field == 'prop_title' ) {
@@ -85,7 +89,7 @@ if( $keyword_field == 'prop_title' ) {
             <div class="col-sm-3 col-xs-6">
                 <div class="form-group az-text1">
                     <select name="price_type" class="selectpicker az-text1" data-live-search="false" data-live-search-style="begins">
-                        <option value="price_sale">Цена продажи</option>
+                        <option value="fave_property_price">Цена продажи</option>
                         <option value="price_day">Цена по дням</option>
                         <option value="price_week">Цена по неделям</option>
                         <option value="price_month">Цена по месяцам</option>
@@ -224,7 +228,7 @@ if( $keyword_field == 'prop_title' ) {
 
             <?php if( $adv_search_price_slider != 0 ) { ?>
                 <?php if( $adv_show_hide['price_slider'] != 1 ) { ?>
-                    <div class="col-sm-12 col-xs-12">
+                    <div class="col-sm-9 col-xs-9">
                         <div class="range-advanced-main">
                             <div class="range-text">
                                 <input type="hidden" name="min-price" class="min-price-range-hidden range-input" readonly >

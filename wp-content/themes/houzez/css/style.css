@@ -6,6 +6,8 @@
 
 .az-text1 {
   font-family: "OpenSans-Regular"; }
+  .az-text1 * {
+    font-family: "OpenSans-Regular"; }
 
 .az-stamp {
   position: absolute;

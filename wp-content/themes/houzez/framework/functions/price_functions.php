@@ -132,10 +132,10 @@ if( !function_exists('houzez_listing_price ') ) {
 // Listing price by property ID
 /*-----------------------------------------------------------------------------------*/
 if( !function_exists('houzez_listing_price_by_id ') ) {
-    function houzez_listing_price_by_id( $propID )
+    function houzez_listing_price_by_id( $propID, $price_type_field = 'fave_property_price' )
     {
 
-        $sale_price = get_post_meta( $propID, 'fave_property_price', true);
+        $sale_price = get_post_meta( $propID, $price_type_field/*'fave_property_price'*/, true);
         $second_price     = get_post_meta( $propID, 'fave_property_sec_price', true );
         $price_postfix = get_post_meta( $propID, 'fave_property_price_postfix', true);
 
@@ -159,12 +159,13 @@ if( !function_exists('houzez_listing_price_by_id ') ) {
 // Listing price version 1
 /*-----------------------------------------------------------------------------------*/
 if( !function_exists('houzez_listing_price_v1 ') ) {
-    function houzez_listing_price_v1()
+    function houzez_listing_price_v1($price_type_field = 'fave_property_price')
     {
-        $sale_price     = get_post_meta( get_the_ID(), 'fave_property_price', true );
-        $second_price     = get_post_meta( get_the_ID(), 'fave_property_sec_price', true );
-        $price_postfix  = get_post_meta( get_the_ID(), 'fave_property_price_postfix', true );
-
+        // if($price_type == 'price_sale'){
+            $sale_price     = get_post_meta( get_the_ID(), $price_type_field/*'fave_property_price'*/, true );
+            $second_price     = get_post_meta( get_the_ID(), 'fave_property_sec_price', true );
+            $price_postfix  = get_post_meta( get_the_ID(), 'fave_property_price_postfix', true );
+        // }
         $output = '';
 
         if (!empty( $sale_price ) ) {

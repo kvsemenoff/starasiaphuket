@@ -281,7 +281,7 @@ function houzez_scripts() {
             'google_map_style' => houzez_option('googlemap_stype'),
             'googlemap_default_zoom' => $googlemap_zoom_level,
             'googlemap_pin_cluster' => $googlemap_pin_cluster,
-            'googlemap_zoom_cluster' => $googlemap_zoom_cluster,
+            'googlemap_zoom_cluster' => 1,//$googlemap_zoom_cluster,
             'map_icons_path' => get_template_directory_uri() . '/images/map/',
             'infoboxClose' => get_template_directory_uri() . '/images/map/close.png',
             'clusterIcon' => get_template_directory_uri() . '/images/map/cluster-icon.png',

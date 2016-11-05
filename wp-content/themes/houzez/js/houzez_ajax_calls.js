@@ -146,7 +146,7 @@ jQuery(document).ready(function ($) {
 
             var houzezMapoptions = {
                 zoom: parseInt(googlemap_default_zoom),
-                //mapTypeId: 'Styled',
+                mapTypeId: 'Styled',
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 panControl: false,
                 draggable: drgflag,
@@ -2264,7 +2264,7 @@ jQuery(document).ready(function ($) {
             });
         }
 
-        var houzez_half_map_listings = function(keyword, location, area, status, type, bedrooms, bathrooms, min_price, max_price, min_area, max_area, publish_date) {
+        var houzez_half_map_listings = function(keyword, location, area, status, type, bedrooms, bathrooms, min_price, max_price, min_area, max_area, publish_date, price_type) {
             var headerMapSecurity = $('#securityHouzezHeaderMap').val();
             var initial_city = HOUZEZ_ajaxcalls_vars.header_map_selected_city;
 
@@ -2289,16 +2289,33 @@ jQuery(document).ready(function ($) {
                     'min_area': min_area,
                     'max_area': max_area,
                     'publish_date': publish_date,
-                    'security': headerMapSecurity
+                    'security': headerMapSecurity,
+                    'price_type' : price_type
                 },
                 beforeSend: function() {
                     $('#houzez-map-loading').show();
                 },
                 success: function(data) { //alert(JSON.stringify(data.properties)); return;
+                    // var temp = JSON.stringify(houzezMapoptions);
+                    // alert(temp);
+                    // var houzezMapoptions2 = {
+                    //     zoom: parseInt(googlemap_default_zoom),
+                    // };
+                    // var temp = JSON.stringify(houzezMapoptions2);
+                    // alert(temp);
 
+                    // houzezMapoptions.scrollwheel = false;
+                    // houzezMapoptions.scaleControl = true;
+                    // var temp = JSON.stringify(houzezMapoptions);
+                    // houzezMapoptions.zoom = 10;
+                    // alert(temp);
                     houzezMap = new google.maps.Map(document.getElementById('mapViewHalfListings'), houzezMapoptions);
                     //google.maps.event.trigger(houzezMap, 'resize');
-
+                    // var temp = JSON.stringify(houzezMap);
+                    // alert(temp);
+                    // var temp = JSON.stringify(data);
+                    // alert(temp);
+                    // alert(1);
                     if( google_map_style !== '' ) {
                         var styles = JSON.parse ( google_map_style );
                         houzezMap.setOptions({styles: styles});
@@ -2320,15 +2337,23 @@ jQuery(document).ready(function ($) {
 
                         reloadMarkers();
                         houzezAddMarkers( data.properties, houzezMap );
-
-                        houzezMap.fitBounds( markers.reduce(function(bounds, marker ) {
+                        var temp1 = markers.reduce(function(bounds, marker ) {
                             return bounds.extend( marker.getPosition() );
-                        }, new google.maps.LatLngBounds()));
+                        }, new google.maps.LatLngBounds());
+                        var tetemp = JSON.stringify(temp1);
+                        alert(tetemp);
+                        temp1[0].south++;
+                        temp1[0].west--;
+                        temp1[1].north--;
+                        temp1[1].east++;
+
+                        alert(temp1);
+                        houzezMap.fitBounds( temp1 );
 
                         google.maps.event.trigger( houzezMap, 'resize' );
 
                         markerCluster = new MarkerClusterer( houzezMap, markers, {
-                            maxZoom: 18,
+                            maxZoom: 30,
                             gridSize: 60,
                             styles: [
                                 {
@@ -2342,7 +2367,6 @@ jQuery(document).ready(function ($) {
                     } else {
                         $('#mapViewHalfListings').empty().html('<div class="map-notfound">'+not_found+'</div>');
                     }
-
                 },
                 error: function(xhr, ajaxOptions, thrownError) {
                     console.log(xhr.status);
@@ -2447,10 +2471,10 @@ jQuery(document).ready(function ($) {
             }*/
 
             if(current_tempalte == 'template/property-listings-map.php') {
-                houzez_half_map_listings(keyword, location, area, status, type, bedrooms, bathrooms, min_price, max_price, min_area, max_area, publish_date);
+                houzez_half_map_listings(keyword, location, area, status, type, bedrooms, bathrooms, min_price, max_price, min_area, max_area, publish_date, price_type);
                 houzez_half_map_listings_list(keyword, location, area, status, type, bedrooms, bathrooms, min_price, max_price, min_area, max_area, publish_date, price_type);
             } else {
-                houzez_header_listing_map(keyword, location, area, status, type, bedrooms, bathrooms, min_price, max_price, min_area, max_area, publish_date);
+                houzez_header_listing_map(keyword, location, area, status, type, bedrooms, bathrooms, min_price, max_price, min_area, max_area, publish_date, price_type);
             }
         }
 
@@ -2480,7 +2504,7 @@ jQuery(document).ready(function ($) {
 
         if($("#houzez-listing-map").length > 0 || $('#mapViewHalfListings').length > 0 ) {
 
-            $('select[name="area"], select[name="bedrooms"], select[name="bathrooms"], select[name="min-price"], select[name="max-price"], input[name="min-price"], input[name="max-price"], input[name="min-area"], input[name="max-area"], select[name="type"], input[name="keyword"]').on('change', function() {
+            $('select[name="price_type"], select[name="area"], select[name="bedrooms"], select[name="bathrooms"], select[name="min-price"], select[name="max-price"], input[name="min-price"], input[name="max-price"], input[name="min-area"], input[name="max-area"], select[name="type"], input[name="keyword"]').on('change', function() {
                 var current_form = $(this).parents('form');
                 var form_widget = $(this).parents('.widget_houzez_advanced_search');
                 houzez_search_on_change(current_form, form_widget);
@@ -2917,6 +2941,9 @@ jQuery(document).ready(function ($) {
                 };
 
                 var initialize = function () {
+                    // var temp = JSON.stringify(mapOptions);
+                    // alert(temp);
+                    mapOptions.zoom = 10;
                     map = new google.maps.Map(document.getElementById('singlePropertyMap'), mapOptions);
                     panorama = new google.maps.StreetViewPanorama(document.getElementById('street-map'), panoramaOptions);
 

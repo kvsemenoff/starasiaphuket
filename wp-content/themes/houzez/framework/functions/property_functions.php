@@ -9,6 +9,8 @@
 /*-----------------------------------------------------------------------------------*/
 // Submit Property filter
 /*-----------------------------------------------------------------------------------*/
+$price_type = '';
+
 add_filter('houzez_submit_listing', 'houzez_submit_listing');
 
 if( !function_exists('houzez_submit_listing') ) {
@@ -1585,7 +1587,17 @@ if( !function_exists('houzez_header_map_listings') ) {
         $min_area = isset($_POST['min_area']) ? sanitize_text_field($_POST['min_area']) : '';
         $max_area = isset($_POST['max_area']) ? sanitize_text_field($_POST['max_area']) : '';
         $publish_date = isset($_POST['publish_date']) ? sanitize_text_field($_POST['publish_date']) : '';
-        /*$radius = isset($_POST['radius']) ? sanitize_text_field($_POST['radius']) : '';
+        
+        /*ajax puller*/
+        global $price_type;
+        $price_type = isset($_POST['price_type']) ? sanitize_text_field($_POST['price_type']) : '';
+        
+        if($price_type == 'price_sale'){
+            $price_type_field = 'fave_property_price';
+        } else {
+            $price_type_field = $price_type;
+        }
+        /*ajax puller*//*$radius = isset($_POST['radius']) ? sanitize_text_field($_POST['radius']) : '';
         $propLatlng = isset($_POST['propLatlng']) ? sanitize_text_field($_POST['propLatlng']) : '';
 
         if( $radius != 'none' && !empty($radius) ) {
@@ -1799,7 +1811,7 @@ if( !function_exists('houzez_header_map_listings') ) {
 
             if( $min_price >= 0 && $max_price > $min_price ) {
                 $meta_query[] = array(
-                    'key' => 'fave_property_price',
+                    'key' => $price_type_field,//'fave_property_price',
                     'value' => array($min_price, $max_price),
                     'type' => 'NUMERIC',
                     'compare' => 'BETWEEN',
@@ -1809,7 +1821,7 @@ if( !function_exists('houzez_header_map_listings') ) {
             $min_price = doubleval( houzez_clean( $min_price ) );
             if( $min_price >= 0 ) {
                 $meta_query[] = array(
-                    'key' => 'fave_property_price',
+                    'key' => $price_type_field,//'fave_property_price',
                     'value' => $min_price,
                     'type' => 'NUMERIC',
                     'compare' => '>=',
@@ -1819,7 +1831,7 @@ if( !function_exists('houzez_header_map_listings') ) {
             $max_price = doubleval( houzez_clean( $max_price ) );
             if( $max_price >= 0 ) {
                 $meta_query[] = array(
-                    'key' => 'fave_property_price',
+                    'key' => $price_type_field,//'fave_property_price',
                     'value' => $max_price,
                     'type' => 'NUMERIC',
                     'compare' => '<=',
@@ -1924,7 +1936,7 @@ if( !function_exists('houzez_header_map_listings') ) {
             $prop->prop_meta = houzez_listing_meta_v1();
             $prop->type = houzez_taxonomy_simple('property_type');
             $prop->images_count = count( $prop_images );
-            $prop->price = houzez_listing_price_v1();
+            $prop->price = houzez_listing_price_v1($price_type_field);
 
             foreach( $prop_type as $term_id ) {
                 $icon = get_tax_meta( $term_id, 'fave_prop_type_icon');
@@ -1990,6 +2002,7 @@ if( !function_exists('houzez_half_map_listings') ) {
         $keyword_field = houzez_option('keyword_field');
 
         /*ajax puller*/
+        global $price_type;
         $price_type = isset($_POST['price_type']) ? sanitize_text_field($_POST['price_type']) : '';
         
         if($price_type == 'price_sale'){
@@ -2311,7 +2324,16 @@ if( !function_exists('houzez_get_single_property') ) {
         check_ajax_referer('houzez_map_ajax_nonce', 'security');
 
         $prop_id = isset($_POST['prop_id']) ? sanitize_text_field($_POST['prop_id']) : '';
-
+        /*ajax puller*/
+        global $price_type;
+        $price_type = isset($_POST['price_type']) ? sanitize_text_field($_POST['price_type']) : '';
+        
+        if($price_type == 'price_sale'){
+            $price_type_field = 'fave_property_price';
+        } else {
+            $price_type_field = $price_type;
+        }
+        /*ajax puller*/
         $args = array(
             'p' => $prop_id,
             'posts_per_page' => 1,
@@ -2347,7 +2369,7 @@ if( !function_exists('houzez_get_single_property') ) {
             $prop->prop_meta = houzez_listing_meta_v1();
             $prop->type = houzez_taxonomy_simple('property_type');
             $prop->images_count = count( $prop_images );
-            $prop->price = houzez_listing_price_v1();
+            $prop->price = houzez_listing_price_v1($price_type_field);
 
             foreach( $prop_type as $term_id ) {
                 $icon = get_tax_meta( $term_id, 'fave_prop_type_icon');
