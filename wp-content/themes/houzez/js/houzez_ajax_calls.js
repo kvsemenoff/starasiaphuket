@@ -2341,13 +2341,13 @@ jQuery(document).ready(function ($) {
                             return bounds.extend( marker.getPosition() );
                         }, new google.maps.LatLngBounds());
                         var tetemp = JSON.stringify(temp1);
-                        alert(tetemp);
-                        temp1[0].south++;
-                        temp1[0].west--;
-                        temp1[1].north--;
-                        temp1[1].east++;
+                        // alert(tetemp);
+                        // temp1[0].south++;
+                        // temp1[0].west--;
+                        // temp1[1].north--;
+                        // temp1[1].east++;
 
-                        alert(temp1);
+                        // alert(temp1);
                         houzezMap.fitBounds( temp1 );
 
                         google.maps.event.trigger( houzezMap, 'resize' );
