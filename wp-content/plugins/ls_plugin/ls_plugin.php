@@ -28,11 +28,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 	register_activation_hook( __FILE__ , 'ls_plugin_activate' );
 	function ls_plugin_activate() {
 		add_option('ls_database_url', '');
-		$args = Array(
-				'post_title' => 'Ajax puller images'
-			);
-		$post_id = wp_insert_post($args);
-		add_option('ls_images', $args);
+		// $args = Array(
+		// 		'post_title' => 'Ajax puller images',
+		// 		'post_status' => 'private'
+		// 	);
+		// $post_id = wp_insert_post($args);
+		add_option('ls_images', Array());
 		// echo('expression');
 		// global $wpdb;
 		// $wpdb->update($wpdb->posts, array('post_title' => 'anzar post2', 'post_content' => 'anzar content'), array('ID' => 1));
@@ -41,7 +42,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 	register_deactivation_hook( __FILE__ , 'ls_plugin_deactivate' );
 	function ls_plugin_deactivate() {
 		delete_option('ls_database_url');
+		// $post_id = get_option('ls_images');
 		delete_option('ls_images');
+		// wp_delete_post($post_id);
 	}
 
 	add_action( 'admin_menu', 'ajax_puller_create_settings_submenu' );
@@ -201,7 +204,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 			// wp_update_post($value3);
 			// update_post_meta($ls_post_id, '_thumbnail_id', 'enable');
 			// echo $src;
-			print_r($value1_1);
+			// print_r($value1_1);
 			foreach( $value1_1 as $value1_1_key=>$value1_1_item ){
 				update_post_meta($ls_post_id, $value1_1_key, $value1_1_item);
 			}
@@ -228,16 +231,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 			// $thumbnail_p = get_post($thumbnail_id);
 			// preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $thumbnail_p->guid, $matches1 );
 			// print_r($ls_thumbnail_temp);
-			// if(){}
-				preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $ls_thumbnail_temp, $matches2 );
-			// if($matches1 != $matches2){
-				$file_array = array();
-				$file_array['name'] = basename( $matches2[0] );
-				$file_array['tmp_name'] = download_url( $ls_thumbnail_temp );
-				$id = media_handle_sideload( $file_array, $ls_post_id, NULL );
-				wp_get_attachment_url( $id );
-				$p = get_post($id);
-				update_post_meta($p->post_parent,'_thumbnail_id',$id);
+			// if(){}  get_option('ls_images');
+				$images = get_option('ls_images');
+
+				// print_r($images);
+				if($images[$ls_thumbnail_temp]){
+					update_post_meta($ls_post_id, '_thumbnail_id', $images[$ls_thumbnail_temp]);
+				} else {
+					preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $ls_thumbnail_temp, $matches2 );
+				// if($matches1 != $matches2){
+					$file_array = array();
+					$file_array['name'] = basename( $matches2[0] );
+					$file_array['tmp_name'] = download_url( $ls_thumbnail_temp );
+					$id = media_handle_sideload( $file_array, $ls_post_id, NULL );
+					wp_get_attachment_url( $id );
+					$p = get_post($id);
+					update_post_meta($p->post_parent,'_thumbnail_id',$id);
+					$images[$ls_thumbnail_temp] = $id;
+					
+				}
+				// foreach($images as $images_key=>$images_value){
+				// 	if()
+				// }
 			// }
 			/*fill thumbnail*/
 
@@ -247,17 +262,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 				delete_post_meta($ls_post_id, 'fave_property_images');
 				foreach ($ls_gallery_temp as $ls_gallery_temp_value) {
 					// print_r($ls_gallery_temp_value);
-					unset($matches);
-					preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $ls_gallery_temp_value, $matches );
-					$file_array = array();
-					$file_array['name'] = basename( $matches[0] );
-					$file_array['tmp_name'] = download_url( $ls_gallery_temp_value );
-					$id = media_handle_sideload( $file_array, $ls_post_id, NULL );
-					// wp_get_attachment_url( $id );
-					$p = get_post($id);
-					add_post_meta($p->post_parent, 'fave_property_images', $id, false);
+					
+					if($images[$ls_gallery_temp_value]){
+						add_post_meta($ls_post_id, 'fave_property_images', $images[$ls_gallery_temp_value], false);
+					} else {
+						unset($matches);
+						preg_match( '/[^\?]+\.(jpe?g|jpe|gif|png)\b/i', $ls_gallery_temp_value, $matches );
+						$file_array = array();
+						$file_array['name'] = basename( $matches[0] );
+						$file_array['tmp_name'] = download_url( $ls_gallery_temp_value );
+						$id = media_handle_sideload( $file_array, $ls_post_id, NULL );
+						// wp_get_attachment_url( $id );
+						$p = get_post($id);
+						add_post_meta($p->post_parent, 'fave_property_images', $id, false);
+						$images[$ls_gallery_temp_value] = $id;
+					}
 				}
+
 			}
+			update_option('ls_images', $images);
 			/*fill gallery*/
 
 			/*fill the property*/
