@@ -2232,7 +2232,7 @@ jQuery(document).ready(function ($) {
 
                             houzez_map_radius( houzezMap, keyword, radius );
                         });
-*/
+                        */
                         houzezMap.fitBounds( markers.reduce(function(bounds, marker ) {
                             return bounds.extend( marker.getPosition() );
                         }, new google.maps.LatLngBounds()));
@@ -2304,7 +2304,9 @@ jQuery(document).ready(function ($) {
                     // var temp = JSON.stringify(houzezMapoptions2);
                     // alert(temp);
 
-                    // houzezMapoptions.scrollwheel = false;
+                    houzezMapoptions.scrollwheel = false;
+                    houzezMapoptions.maxZoom = 12;
+                    
                     // houzezMapoptions.scaleControl = true;
                     // var temp = JSON.stringify(houzezMapoptions);
                     // houzezMapoptions.zoom = 10;
@@ -2340,7 +2342,7 @@ jQuery(document).ready(function ($) {
                         var temp1 = markers.reduce(function(bounds, marker ) {
                             return bounds.extend( marker.getPosition() );
                         }, new google.maps.LatLngBounds());
-                        var tetemp = JSON.stringify(temp1);
+                        // var tetemp = JSON.stringify(temp1);
                         // alert(tetemp);
                         // temp1[0].south++;
                         // temp1[0].west--;
@@ -2348,7 +2350,27 @@ jQuery(document).ready(function ($) {
                         // temp1[1].east++;
 
                         // alert(temp1);
-                        houzezMap.fitBounds( temp1 );
+                        var tempNE = temp1.getNorthEast();
+                        var tempSW = temp1.getSouthWest();
+                        var lat1 = tempNE.lat();
+                        var lng1 = tempNE.lng();
+                        var lat2 = tempSW.lat();
+                        var lng2 = tempSW.lng();
+                        var newTempNE = new google.maps.LatLng({lat: lat1+.05, lng: lng1-.05});
+                        var newTempSW = new google.maps.LatLng({lat: lat2-.05, lng: lng2+.05});
+                        var newBounds = new google.maps.LatLngBounds(newTempNE, newTempSW);
+                        houzezMap.fitBounds( newBounds );
+                        // alert(newBounds);
+                        // alert(++lat1);
+                        // alert(++lng1);
+                        // newTempNE = {lat: lat1, lng: lng1};
+                        // alert(newTempNE);
+                        // alert(tempNE);
+                        // alert(tempSW);
+                        // houzezMap.fitBounds( temp1 );
+                        var ls_bounds = houzezMap.getBounds();
+                        // alert(ls_bounds);
+
 
                         google.maps.event.trigger( houzezMap, 'resize' );
 
