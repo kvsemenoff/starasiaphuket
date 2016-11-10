@@ -415,4 +415,48 @@ if( class_exists('iHomefinderAutoloader') ) {
 
 	add_action('wp_enqueue_scripts', 'remove_bb_bootstrap', 1000);
 }
+
+// function ls_options() {
+//     $args = array(
+//         'label'               => __('Общие настройки2'),
+//         'labels'              => array(
+//             'name'               => __('Общие настройки'),
+//             'singular_name'      => __('Общие настройки'),
+//             'menu_name'          => __('Общие настройки'),
+//             'all_items'          => __('Общие настройки'),
+//             'add_new'            => _x('Добавить общие настройки', 'product'),
+//             'add_new_item'       => __('Новая общая настройка'),
+//             'edit_item'          => __('Редактировать общие настройки'),
+//             'new_item'           => __('Новая общая настройка'),
+//             'view_item'          => __('Общие настройки'),
+//             'not_found'          => __('Общие настройки не найдены'),
+//             'not_found_in_trash' => __('Удаленных общих настроек нет'),
+//             'search_items'       => __('Найти общие настройки')
+//         ),
+//         'description'         => __('Общие настройки'),
+//         'public'              => true,
+//         'exclude_from_search' => false,
+//         'publicly_queryable'  => true,
+//         'show_ui'             => true,
+//         'show_in_nav_menus'   => false,
+//         'show_in_menu'        => true,
+//         'show_in_admin_bar'   => true,
+//         'menu_position'       => 5,
+//         'capability_type'     => 'page',
+//         'hierarchical'        => false,
+//         'supports'            => array(
+//             'title'
+            
+   
+//         ),
+//         'has_archive'         => false,
+//         'rewrite'             => array(
+//             'slug'       => '',
+//             'with_front' => false
+//         )
+//     );
+//     register_post_type('lsoption', $args);
+// }
+// add_action('init', 'ls_options');
+
 ?>

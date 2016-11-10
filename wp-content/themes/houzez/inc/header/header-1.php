@@ -33,8 +33,9 @@ if( $header_1_menu_align == 'nav-right' && $header_login != 'yes' ) {
 
 			<div class="logo logo-desktop">
 				<?php get_template_part('inc/header/logo'); ?>
-			</div>
 
+			</div>
+			
 
 			<nav class="navi main-nav">
 				<?php

@@ -10,6 +10,14 @@ var nice = false;
 (function($){
 "use strict";
 
+/*ajax puller*/
+    $('.ls-search .ls-i').click(function(){
+        $(this).siblings('input[type="text"]').toggleClass('slide');
+        $('.ls-search .ls-i').toggleClass('ls-disp-none');
+    });
+/*ajax puller*/
+
+
     var houzez_rtl = HOUZEZ_ajaxcalls_vars.houzez_rtl;
     var houzez_date_language = HOUZEZ_ajaxcalls_vars.houzez_date_language;
 

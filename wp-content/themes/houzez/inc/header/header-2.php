@@ -32,9 +32,10 @@ if( $top_bar != 0 ) {
                 <div class="col-lg-3 col-md-3 col-sm-3 hidden-sm hidden-xs">
                     <div class="logo logo-desktop">
                         <?php get_template_part('inc/header/logo'); ?>
+                        
                     </div>
                 </div>
-
+                
                 <?php if( $contact_info != false ) { ?>
                 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 <?php echo sanitize_html_class( $contact_pull_right ); ?>">
                     <?php get_template_part( 'inc/header/contact', 'info' ); ?>
