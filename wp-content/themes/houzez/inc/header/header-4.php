@@ -39,6 +39,9 @@ if( $header_4_menu_align == 'nav-right' && $header_login != 'yes' ) {
             <div class="logo logo-desktop">
                 <?php get_template_part('inc/header/logo'); ?>
             </div>
+            
+            <div class="ls-phone"><a href="tel:88002000600">8(800)-2000-600 <i class="fa fa-phone" aria-hidden="true"></i></a></div>
+            <?php if(is_front_page()): ?>
             <?php global $houzez_local; ?>
             <div class="ls-search">
                 <form role="search" method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
@@ -51,17 +54,20 @@ if( $header_4_menu_align == 'nav-right' && $header_login != 'yes' ) {
                     </div>
                 </form>
             </div>
-            <!-- <div class="ls-search">
+            <?php endif; ?>
 
-                <form action="">
-                    <input type="text" name="keyword">
-                    <button type="submit"></button>
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    <i class="fa fa-times ls-disp-none" aria-hidden="true"></i>
-                </form>
-            </div> -->
 
-            <div class="ls-phone"><a href="tel:88002000600">8(800)-2000-600 <i class="fa fa-phone" aria-hidden="true"></i></a></div>
+
+            
+            <div class="ls-lang">
+                <div class="az-select">
+                    <select name="" id="">
+                        <option value="1">RU</option>
+                        <option value="2">EN</option>
+                    </select>
+                </div>
+            </div>
+            
             <nav class="navi main-nav">
                 <?php
                 // Pages Menu

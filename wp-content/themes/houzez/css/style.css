@@ -49,11 +49,12 @@
   display: none !important; }
 
 .ls-phone {
-  float: right;
-  line-height: 90px; }
+  float: left;
+  line-height: 90px;
+  margin-left: 15px; }
 
 .ls-search {
-  float: right;
+  float: left;
   line-height: 90px;
   position: relative;
   padding-left: 10px; }
@@ -75,7 +76,7 @@
     cursor: pointer; }
 
 .ls-search {
-  float: right;
+  float: left;
   line-height: 90px;
   width: 15px; }
   .ls-search input[type="text"].slide {
@@ -97,6 +98,19 @@
     .ls-search input[type="text"].slide ~ button[type="submit"] i {
       font-size: 12px;
       color: #000; }
+
+.ls-lang {
+  float: right;
+  line-height: 90px; }
+
+.az-select select {
+  line-height: normal;
+  -webkit-appearance: none;
+  -moz-appearance: none; }
+.az-select select::-ms-expand {
+  display: none; }
+.az-select .az-options {
+  line-height: normal; }
 
 @media only screen and (min-width: 768px) {
   .az-stamp {
