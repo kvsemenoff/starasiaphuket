@@ -136,7 +136,7 @@
 		);
 	$ls_relations = Array(
 			'id' => 'fave_property_id',
-			'address' => ['fave_property_address', 'fave_property_map_address'],
+			'address' => Array('fave_property_address', 'fave_property_map_address'),
 			'bedrooms' => 'fave_property_bedrooms',
 			'bathrooms' => 'fave_property_bathrooms',
 			'propertysize' => 'fave_property_size',

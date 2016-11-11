@@ -101,16 +101,33 @@
 
 .ls-lang {
   float: right;
-  line-height: 90px; }
+  line-height: 90px;
+  height: 90px;
+  vertical-align: middle; }
 
-.az-select select {
+.az-select {
   line-height: normal;
-  -webkit-appearance: none;
-  -moz-appearance: none; }
-.az-select select::-ms-expand {
-  display: none; }
-.az-select .az-options {
-  line-height: normal; }
+  display: inline-block; }
+  .az-select select {
+    padding: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #fff;
+    line-height: normal;
+    -webkit-appearance: none;
+    -moz-appearance: none; }
+  .az-select select::-ms-expand {
+    display: none; }
+  .az-select .az-options {
+    line-height: normal; }
+    .az-select .az-options div {
+      padding: 5px;
+      cursor: pointer;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.3); }
+    .az-select .az-options div:hover {
+      background: rgba(255, 255, 255, 0.7); }
 
 @media only screen and (min-width: 768px) {
   .az-stamp {

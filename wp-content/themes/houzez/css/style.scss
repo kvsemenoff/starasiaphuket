@@ -110,10 +110,18 @@
 .ls-lang{
     float: right;
     line-height: 90px;
+    height: 90px;
+    vertical-align: middle;
 }
 .az-select{
-
+    line-height: normal;
+    display: inline-block;
     select{
+        padding: 5px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #fff;
         line-height: normal;
         -webkit-appearance: none;
             -moz-appearance: none;
@@ -123,6 +131,15 @@
     }
     .az-options{
         line-height: normal;
+        div{
+            padding: 5px;
+            cursor: pointer;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        div:hover{
+            background: rgba(255, 255, 255, 0.7);
+        }
     }
 }
 
