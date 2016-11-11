@@ -82,7 +82,7 @@
   .ls-search input[type="text"].slide {
     border: 1px solid #aaa;
     width: 155px;
-    padding: 5px; }
+    padding: 5px 22px 5px 5px; }
   .ls-search input[type="text"].slide ~ button[type="submit"] {
     display: block;
     position: absolute;

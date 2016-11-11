@@ -626,7 +626,6 @@ if (class_exists('WPBakeryVisualComposer')) {
 				"save_always" => true
 
 			),
-
 			array(
 				"param_name" => "custom_title",
 				"type" => "textfield",
@@ -1708,6 +1707,35 @@ if (class_exists('WPBakeryVisualComposer')) {
 	) );
 
 
+	/*---------------------------------------------------------------------------------
+	 Property By ID222
+	-----------------------------------------------------------------------------------*/
+	vc_map(array(
+		"name" => esc_html__("Inspire me", "houzez"),
+		"description" => esc_html__('Show single property by id', "houzez"),
+		"base" => "inspire-me",
+		'category' => "By Favethemes",
+		"class" => "",
+		'admin_enqueue_js' => "",
+		'admin_enqueue_css' => "",
+		"icon" => "icon-prop-by-id",
+		"params" => array(
+			array(
+				"param_name" => "custom_title",
+				"type" => "textfield",
+				"value" => "",
+				"heading" => esc_html__("Optional - Custom Title:", "houzez"),
+				"description" => "",
+				"save_always" => true
+			),
+
+
+		) // End params
+	));
+
+	/*---------------------------------------------------------------------------------
+	 Property By ID222
+	-----------------------------------------------------------------------------------*/
 
 } // End Class_exists
 ?>

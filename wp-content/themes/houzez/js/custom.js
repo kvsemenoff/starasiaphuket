@@ -59,7 +59,20 @@ var nice = false;
     });
 }
 
+
+
 $('.az-select').az_select([]);
+
+$(".az-options div[data-val]").click(function(){
+    var select = $(this).attr('data-val');
+    if(select==1){
+        $('.ls-currency').html('<i class="fa fa-rub" aria-hidden="true"></i>');
+    }else if(select==2){
+        $('.ls-currency').html('<i class="fa fa-usd" aria-hidden="true"></i>');
+        
+    }
+});
+
 /*ajax puller*/
 
 

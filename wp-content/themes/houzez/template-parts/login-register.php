@@ -74,7 +74,7 @@ $allowed_html_array = array(
                     <input id="useremail" name="useremail" type="email" placeholder="<?php esc_html_e('Email','houzez'); ?>" />
                 </div>
 
-                <?php if( $enable_password == 'yes' ) { ?>
+                <?php if( 1/*$enable_password == 'yes'*/ ) { ?>
                     <div class="input-pass input-icon">
                         <input id="register_pass" name="register_pass" placeholder="<?php esc_html_e('Password','houzez'); ?>" type="password" />
                     </div>
