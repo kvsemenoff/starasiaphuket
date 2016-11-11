@@ -56,9 +56,12 @@ if( $header_4_menu_align == 'nav-right' && $header_login != 'yes' ) {
             </div>
             <?php endif; ?>
 
-
-
             
+
+            <div class="ls-currency">
+                <i class="fa fa-rub" aria-hidden="true"></i>
+            </div>
+
             <div class="ls-lang">
                 <div class="az-select">
                     <select name="" id="">
@@ -68,6 +71,10 @@ if( $header_4_menu_align == 'nav-right' && $header_login != 'yes' ) {
                 </div>
             </div>
             
+            <!-- <div class="ls-favorites">
+                <a href="/favorite/"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+            </div> -->
+
             <nav class="navi main-nav">
                 <?php
                 // Pages Menu

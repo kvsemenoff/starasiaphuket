@@ -129,6 +129,25 @@
     .az-select .az-options div:hover {
       background: rgba(255, 255, 255, 0.7); }
 
+.ls-currency {
+  float: right;
+  line-height: 90px;
+  margin-left: 15px;
+  color: #fff; }
+  .ls-currency * {
+    display: inline-block;
+    vertical-align: middle; }
+
+.ls-favorites {
+  float: right;
+  line-height: 90px;
+  margin-left: 15px;
+  margin-right: 15px;
+  color: #fff; }
+  .ls-favorites a {
+    line-height: normal;
+    display: inline-block; }
+
 @media only screen and (min-width: 768px) {
   .az-stamp {
     font-size: 30px; }
