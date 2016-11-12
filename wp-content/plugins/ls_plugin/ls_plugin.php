@@ -115,6 +115,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 		$az_json = $_POST['az_json'];
 		update_option('ls_database_url', $_POST['ls_database_url']); //update data url
 		foreach ($az_json as $value){
+
 			if($value['gps']){
 				$value['property_map'] = '1';
 				$value['property_map_street'] = 'hide';
@@ -131,6 +132,23 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 			}
 
 			/*separation data*/
+			$value4 = Array();
+			$value4['property_status'] = Array();
+			if($value['price_sale']!=''&&$value['price_sale']!='//'){
+				$value4['property_status'][] = 'For Sale';
+			}
+			if(($value['price_day']!=''&&$value['price_day']!='//')||
+				($value['price_week']!=''&&$value['price_week']!='//')||
+				($value['price_month']!=''&&$value['price_month']!='//')||
+				($value['price_longterm']!=''&&$value['price_longterm']!='//')||
+				($value['price_spec']!=''&&$value['price_spec']!='//')){
+				$value4['property_status'][] = 'For Rent';
+			}
+			foreach($ls_cats as $cats_key=>$cats_val){
+				$value4[$cats_val] = $value[$cats_key];
+				unset($value[$cats_key]);
+			}
+
 			$ls_thumbnail_temp = $value[$ls_thumbnail];
 			$ls_gallery_temp = $value[$ls_gallery];
 			unset($value[$ls_thumbnail]);
@@ -172,15 +190,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 				unset($value[$posts_key]);
 			}
 			$value3['post_type'] = 'property';
-			$value4 = Array();
-			foreach($ls_cats as $cats_key=>$cats_val){
-				$value4[$cats_val] = $value[$cats_key];
-				unset($value[$cats_key]);
-			}
+			
+			
 
 			/*separation data*/
 
-			/*is it new item?*/
+			/*is it a new item?*/
 			wp_reset_query(); 
 			$args = array( 'meta_key' => 'fave_property_id', 'meta_value' => $value2['fave_property_id'], 'post_type' => 'property');
 			$query = new WP_Query( $args );
@@ -197,7 +212,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 				// $wpdb->insert($wpdb->posts, array('post_title' => $value3['post_title'], 'post_type'=>'property'), array('%s', '%s'));
 				// $ls_post_id = $wpdb->insert_id;
 			}
-			/*is it new item?*/
+			/*is it a new item?*/
 
 			/*fill the property*/
 			// $value3['ID'] = $ls_post_id;

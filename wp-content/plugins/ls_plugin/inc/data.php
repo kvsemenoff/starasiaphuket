@@ -155,7 +155,8 @@
 			'descr' => 'post_content'
 		);
 	$ls_cats = Array(
-			'type' => 'property_type'
+			'type' => 'property_type',
+			'area' => 'property_area'
 		);
 	$ls_thumbnail = 'img';
 	$ls_gallery = 'gallery';

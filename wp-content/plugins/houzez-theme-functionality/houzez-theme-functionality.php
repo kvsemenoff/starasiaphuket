@@ -84,6 +84,7 @@ class Houzez_Functionality {
             require_once(HOUZEZ_FUNC_PATH . 'vc_shortcodes/properties-map.php');
             require_once(HOUZEZ_FUNC_PATH . 'vc_shortcodes/team-member.php');
             require_once(HOUZEZ_FUNC_PATH . 'vc_shortcodes/inspire-me.php');
+            require_once(HOUZEZ_FUNC_PATH . 'vc_shortcodes/inspire-me-slide.php');
 
             //Meta & Tax
             require_once(HOUZEZ_FUNC_PATH . 'extensions/Tax-meta-class/Tax-meta-class.php');

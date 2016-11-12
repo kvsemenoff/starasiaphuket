@@ -1708,13 +1708,13 @@ if (class_exists('WPBakeryVisualComposer')) {
 
 
 	/*---------------------------------------------------------------------------------
-	 Property By ID222
+	 Inspire me
 	-----------------------------------------------------------------------------------*/
 	vc_map(array(
 		"name" => esc_html__("Inspire me", "houzez"),
-		"description" => esc_html__('Show single property by id', "houzez"),
+		"description" => esc_html__('Show set of properties', "houzez"),
 		"base" => "inspire-me",
-		'category' => "By Favethemes",
+		'category' => "By Ajax Puller",
 		"class" => "",
 		'admin_enqueue_js' => "",
 		'admin_enqueue_css' => "",
@@ -1734,7 +1734,39 @@ if (class_exists('WPBakeryVisualComposer')) {
 	));
 
 	/*---------------------------------------------------------------------------------
-	 Property By ID222
+	 Inspire me
+	-----------------------------------------------------------------------------------*/
+
+
+	/*---------------------------------------------------------------------------------
+	 Inspire me (slide)
+	-----------------------------------------------------------------------------------*/
+	vc_map(array(
+		"name" => esc_html__("Inspire me (slide)", "houzez"),
+		"description" => esc_html__('Show set of properties', "houzez"),
+		"base" => "inspire-me-slide",
+		'category' => "By Ajax Puller",
+		"class" => "",
+		'admin_enqueue_js' => "",
+		'admin_enqueue_css' => "",
+		"icon" => "icon-prop-by-id",
+		"as_child" => array('only' => 'inspire-me'),
+		"params" => array(
+			array(
+				"param_name" => "custom_title",
+				"type" => "textfield",
+				"value" => "",
+				"heading" => esc_html__("Optional - Custom Title:", "houzez"),
+				"description" => "",
+				"save_always" => true
+			),
+
+
+		) // End params
+	));
+
+	/*---------------------------------------------------------------------------------
+	 Inspire me (slide)
 	-----------------------------------------------------------------------------------*/
 
 } // End Class_exists
