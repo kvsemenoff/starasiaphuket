@@ -174,6 +174,53 @@
     float: left;
     width: 10%;
 }
+.newmap{
+    background: url(../images/map/filter-map2.png) no-repeat top left;
+}
+.loc{
+    label{
+        line-height: 18px;
+        padding: 0 3px 0 3px;
+        border-radius: 3px;
+        white-space: nowrap;
+        text-decoration: none;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+        white-space: nowrap;
+        cursor: pointer;
+        background: #fff;
+        background-color: rgba(255,255,255,0.75);
+        color: #888;
+        left: -50%;
+        margin-top: -23px;
+        position: relative;
+        display: block;
+        font-weight: bold;
+    }
+}
+
+/*------------------------------*/
+.newmap{height:335px;width:150px}.phuket .contentSidebar .newmap{margin:0 0 0 70px}.phuket .houseEdit #location{padding-left:54px}.phuket .newmap label.NAI{left:-90%}.phuket .newmap label.NAI:after{left:85%}.phuket .newmap label.RAW{left:0%}.phuket .newmap label.RAW:after{display:none}.phuket .newmap label.PAN{left:-20%;top:3px}.phuket .newmap label.PAN:after{left:20%}.phuket .newmap label.KAR{left:-80%;top:-5px}.phuket .newmap label.KAR:after{left:75%}.phuket .newmap label.PAT{left:-80%;top:-5px}.phuket .newmap label.PAT:after{left:80%}.phuket .newmap label.CHA{left:-20%;top:-3px}.phuket .newmap label.CHA:after{left:30%}.phuket .newmap label.KTH{left:-35%;top:-5px}.phuket .newmap label.KTH:after{left:20%}.phuket .newmap label.PHU{left:-40%}.phuket .newmap label.PHU:after{left:40%}.phuket .newmap label.KAM{top:5px}.phuket .newmap label.CHE{left:-5%;top:10px}.phuket .newmap label.CHE:after{left:10%}.phuket .newmap label.SUR{left:-70%;top:4px}.phuket .newmap label.SUR:after{left:70%}.phuket .newmap label.KAM{left:-75%;top:4px}.phuket .newmap label.KAM:after{left:75%}.phuket .newmap label.BAN{left:-80%;top:-1px}.phuket .newmap label.BAN:after{left:80%}.phuket .newmap label.TAL{left:-10%;top:3px}.phuket .newmap label.TAL:after{left:15%}.phuket .newmap label.NAT{left:-70%;top:-3px}.phuket .newmap label.NAT:after{left:70%}.phuket .newmap label.LAY{left:-80%;top:1px}.phuket .newmap label.LAY:after{left:80%}.phuket .newmap label.NYG{left:-80%;top:-2px}.phuket .newmap label.NYG:after{left:80%}.phuket .newmap label.EAS:after{display:none}.phuket .newmap label.PHA{top:20px}.phuket .newmap label.PHA:after{display:none}.phuket .newmap label.COC{top:-3px}.phuket .newmap label.YAM{top:-8px}.phuket .house .houseLocation{width:100px;height:230px}.phuket .locationGuide .mapLabel.CHE{left:-40%;top:-15px}.phuket .locationGuide .mapLabel.CHE:after{left:30%}.phuket .locationGuide .mapLabel.CHA{left:-40%}.phuket .locationGuide .mapLabel.NAI{left:-80%}.phuket .locationGuide .mapLabel.NAI:after{left:80%}.phuket .locationGuide .mapLabel.RAW{left:0%}.phuket .locationGuide .mapLabel.RAW:after{left:20%}.phuket .locationGuide .mapLabel.EAS:after{display:none}.samui .houseEdit #location{padding-top:36px}.samui .newmap label.CHO{left:-75%;top:-5px}.samui .newmap label.CHO:after{left:70%}.samui .newmap label.BAR{top:17px;left:-53%}.samui .newmap label.BAR:after{display:none}.samui .newmap label.BAP{left:-70%}.samui .newmap label.BAP:after{left:70%}.samui .newmap label.BOP{left:-60%;top:5px}.samui .newmap label.PLA{top:-3px;left:-55%}.samui .newmap label.PLA:after{left:60%}.samui .newmap label.MAE{top:-7px;left:-60%}.samui .newmap label.NAM{top:4px;left:-45%}.samui .newmap label.TAL{left:-55%}.samui .newmap label.HUT{left:-67%;top:2px}.samui .newmap label.HUT:after{left:70%}.samui .newmap label.LAM{left:-60%}.samui .newmap label.BTA{top:280px;left:20px}.samui .newmap label.BTA:after{display:none}.samui .contentBody .newmap label.BTA{top:0px;left:0}.krabi .newmap label.HAD,.krabi .newmap label.NAM{left:-10%;margin-top:-5px}.krabi .newmap label.HAD:after,.krabi .newmap label.NAM:after{display:none}.krabi .newmap label.KRA{left:-20%}.krabi .newmap label.KRA:after{left:20%}.krabi .newmap label.NAN{left:-90%;margin-top:-2px}.krabi .newmap label.NAN:after{display:none}.krabi .newmap label.KLO{margin-top:-13px}.krabi .newmap label.KLO:after{display:none}.pattaya .newmap label.PAT,.pattaya .newmap label.JOM,.pattaya .newmap label.PLA{left:-70%}.pattaya .newmap label.PAT:after,.pattaya .newmap label.JOM:after,.pattaya .newmap label.PLA:after{left:70%}.bali .houseEdit #location .newmap{margin:15px 0 0 0}.bali .contentSidebar .mapWrapper{padding:12px 0 0 0}.bali .newmap label.PEN{left:-40%}.bali .newmap label.PEN:after{left:40%}.bali .newmap label.WES{left:-30%}.bali .newmap label.WES:after{display:none}.bali .newmap label.EAS{left:-60%}.bali .newmap label.EAS:after{display:none}.bali .newmap label.CEN:after,.bali .newmap label.NOR:after{display:none}.bali .newmap label.NUS{margin-top:-2px;left:0}.bali .newmap label.NUS:after{display:none}.bali .newmap label.ULU{left:-90%;margin-top:-8px}.bali .newmap label.ULU:after{display:none}.bali .newmap label.JIM{left:-100%;margin-top:-17px}.bali .newmap label.JIM:after{display:none}.bali .newmap label.KUT{left:-100%;top:-2px}.bali .newmap label.KUT:after{display:none}.bali .newmap label.SEM{margin-top:-42px;left:-120%}.bali .newmap label.SEM:after{display:none}.bali .newmap label.SAN{margin-top:2px;left:-10%}.bali .newmap label.SAN:after{display:none}.bali .newmap label.DEN{left:-20%;top:-5px}.bali .newmap label.DEN:after{left:20%}.bali .newmap label.LEM{left:-60%;top:-4px}.bali .newmap label.LEM:after{left:60%}.bali .houseEdit .newmap label.LEM{left:-10%}.bali .houseEdit .newmap label.LEM:after{left:20%}.bali .house .newmap label.LOM{top:15px;left:105px}.bali .houseEdit .newmap label.LOM{left:365px;top:130px}.bali .contentSidebar .newmap label.LOM{left:205px;top:11px}.bali .house .newmap label.LOM:after{display:none}.bali .contentSidebar .newmap label.LOM:after{left:100%;top:50%;margin-top:-5px;margin-left:0;position:absolute;content:"";display:block;width:0px;height:0px;border:10px solid red;border-width:5px 0px 5px 5px;border-top-color:transparent!important;border-right-color:transparent!important;border-bottom-color:transparent!important;border-left-color:#fff!important}
+/*------------------------------*/
+
+.ls-absol{
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-75px, -50%);
+}
+.ls-mask{
+    padding-top: 170px;
+    padding-bottom: 170px;
+    background: rgba(0,0,0, 0.5);
+    border-radius: 5px;
+}
+.ls-mask2{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: rgba(0,0,0, 0.5);
+    border-radius: 5px;
+}
+
 
 
 @media only screen and (min-width: 768px){

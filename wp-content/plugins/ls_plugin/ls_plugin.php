@@ -146,7 +146,9 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 			}
 			foreach($ls_cats as $cats_key=>$cats_val){
 				$value4[$cats_val] = $value[$cats_key];
-				unset($value[$cats_key]);
+				if($cats_key != 'area'){
+					unset($value[$cats_key]);
+				}
 			}
 
 			$ls_thumbnail_temp = $value[$ls_thumbnail];
