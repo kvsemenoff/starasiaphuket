@@ -166,6 +166,16 @@
     }
 }
 
+.ls-form{
+    float: left;
+    width: 90%;
+}
+.ls-submit{
+    float: left;
+    width: 10%;
+}
+
+
 @media only screen and (min-width: 768px){
 	.az-stamp{
 		font-size: 30px;
