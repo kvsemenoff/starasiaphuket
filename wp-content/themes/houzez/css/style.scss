@@ -213,6 +213,20 @@
     float: left;
     width: 10%;
 }
+.ls-form-ru{
+    float: left;
+    width: 88%;
+    *{
+        font-family: "OpenSans-Regular";
+    }
+}
+.ls-submit-ru{
+    float: left;
+    width: 12%;
+    *{
+        font-family: "OpenSans-Regular";
+    }
+}
 .newmap{
     background: url(../images/map/filter-map2.png) no-repeat top left;
 }
