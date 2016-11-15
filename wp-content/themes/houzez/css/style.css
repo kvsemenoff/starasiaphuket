@@ -122,8 +122,14 @@
       .ls-lang .qtranxs_widget ul li {
         display: none;
         margin-bottom: 10px; }
+        .ls-lang .qtranxs_widget ul li img {
+          opacity: 0.5; }
       .ls-lang .qtranxs_widget ul li.active {
         display: block; }
+        .ls-lang .qtranxs_widget ul li.active img {
+          opacity: 1; }
+      .ls-lang .qtranxs_widget ul li:hover img {
+        opacity: 1; }
   .ls-lang .qtranxs_widget_end {
     display: none; }
 

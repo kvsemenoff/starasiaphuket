@@ -131,9 +131,20 @@
             li{
                 display: none;
                 margin-bottom: 10px;
+                img{
+                    opacity: 0.5;
+                }
             }
             li.active{
                 display: block;
+                img{
+                    opacity: 1;
+                }
+            }
+            li:hover{
+                img{
+                    opacity: 1;
+                }                
             }
         }
     }
