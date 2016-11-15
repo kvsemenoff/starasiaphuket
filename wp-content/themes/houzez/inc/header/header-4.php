@@ -80,6 +80,7 @@ if( $header_4_menu_align == 'nav-right' && $header_login != 'yes' ) {
             </div> -->
 
             <nav class="navi main-nav">
+            <?php //echo [:ru]'Услуги'[:en]'Services'[:]; ?>
                 <?php
                 // Pages Menu
                 if ( has_nav_menu( 'main-menu' ) ) :
