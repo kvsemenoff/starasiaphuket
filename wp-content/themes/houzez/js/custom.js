@@ -24,54 +24,79 @@ var nice = false;
         
     });
 
-    $.prototype.az_select = function(class1){
-    this.each(function(){
-        var az_this = $(this);
-        var select = $(this).find('select');
-        var option = $(this).find('select option');
-        var str = '<div class="az-options ' + class1['class'] + '">';
-        for(var i=0; i<option.length; i++){
-            str+= '<div data-val="' +option.eq(i).val() + '">' + option.eq(i).text() + '</div>'
-        }
-        str+= '</div>';
-        $(this).html($(this).html() + str);
-        $(this).click(function(){
-            $(this).find('.az-options').slideToggle(0);
-            $(this).toggleClass('focus');
-        });
-        $(this).find('select').mousedown(function(){
+
+    /*languages*/
+    var is_open = false;
+    $('.qtranxs_widget li').click(function(){
+
+        if($(this).hasClass('active') && is_open){
+            $('.qtranxs_widget li:not(.active)').slideUp(300);
+            is_open = false;
             return false;
-        });
-        $(this).mouseup(function(){
-            select.focus();
-        });
-        $(this).find('.az-options div[data-val]').click(function(){
-            az_this.find('select').val($(this).attr('data-val'));
-        });
-        $(this).find('select').focusout(function(){
-            if(!az_this.is(':hover')){
-                az_this.find('.az-options').slideUp(0);
-                az_this.removeClass('focus');
-            }
-        });
-        $(this).css('position', 'relative');
-        $(this).find('.az-options').css({'display': 'none', 'position': 'absolute'});
+        } else {
+            $('.qtranxs_widget li').slideDown(300);
+            if(!is_open){
+                is_open = true;
+                return false;
+            }            
+        }
     });
-}
+    $(window).click(function(){
+        if(is_open){
+            $('.qtranxs_widget li:not(.active)').slideUp(300);
+            is_open = false;
+        }
+    });
+    /*languages*/
+
+//     $.prototype.az_select = function(class1){
+//     this.each(function(){
+//         var az_this = $(this);
+//         var select = $(this).find('select');
+//         var option = $(this).find('select option');
+//         var str = '<div class="az-options ' + class1['class'] + '">';
+//         for(var i=0; i<option.length; i++){
+//             str+= '<div data-val="' +option.eq(i).val() + '">' + option.eq(i).text() + '</div>'
+//         }
+//         str+= '</div>';
+//         $(this).html($(this).html() + str);
+//         $(this).click(function(){
+//             $(this).find('.az-options').slideToggle(0);
+//             $(this).toggleClass('focus');
+//         });
+//         $(this).find('select').mousedown(function(){
+//             return false;
+//         });
+//         $(this).mouseup(function(){
+//             select.focus();
+//         });
+//         $(this).find('.az-options div[data-val]').click(function(){
+//             az_this.find('select').val($(this).attr('data-val'));
+//         });
+//         $(this).find('select').focusout(function(){
+//             if(!az_this.is(':hover')){
+//                 az_this.find('.az-options').slideUp(0);
+//                 az_this.removeClass('focus');
+//             }
+//         });
+//         $(this).css('position', 'relative');
+//         $(this).find('.az-options').css({'display': 'none', 'position': 'absolute'});
+//     });
+// }
 
 
 
-$('.az-select').az_select([]);
+// $('.az-select').az_select([]);
 
-$(".az-options div[data-val]").click(function(){
-    var select = $(this).attr('data-val');
-    if(select==1){
-        $('.ls-currency').html('<i class="fa fa-rub" aria-hidden="true"></i>');
-    }else if(select==2){
-        $('.ls-currency').html('<i class="fa fa-usd" aria-hidden="true"></i>');
+// $(".az-options div[data-val]").click(function(){
+//     var select = $(this).attr('data-val');
+//     if(select==1){
+//         $('.ls-currency').html('<i class="fa fa-rub" aria-hidden="true"></i>');
+//     }else if(select==2){
+//         $('.ls-currency').html('<i class="fa fa-usd" aria-hidden="true"></i>');
         
-    }
-});
+//     }
+// });
 
 /*ajax puller*/
 

@@ -63,12 +63,16 @@ if( $header_4_menu_align == 'nav-right' && $header_login != 'yes' ) {
             </div>
 
             <div class="ls-lang">
-                <div class="az-select">
+                <!-- <div class="az-select"> -->
+                <?php the_widget('qTranslateXWidget', array('type' => 'image', 'hide-title' => true, 'widget-css-off' => true) ); ?>
+                    <?php //echo qtranxf_generateLanguageSelectCode('dropdown'); ?>
+                <!-- <div class="az-select">
                     <select name="" id="">
                         <option value="1">RU</option>
                         <option value="2">EN</option>
                     </select>
-                </div>
+                </div> -->
+                <!-- </div> -->
             </div>
             
             <!-- <div class="ls-favorites">

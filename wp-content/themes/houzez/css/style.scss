@@ -112,6 +112,34 @@
     line-height: 90px;
     height: 90px;
     vertical-align: middle;
+    .qtranxs_widget{
+        padding: 0px;
+        display: inline-block;
+        line-height: normal;
+        vertical-align: middle;
+        font-size: 0px;
+        border: none;
+        position: relative;
+        width: 18px;
+        height: 12px;
+        ul{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            // transform: translate(0, -50%);
+            margin: 0px;
+            li{
+                display: none;
+                margin-bottom: 10px;
+            }
+            li.active{
+                display: block;
+            }
+        }
+    }
+    .qtranxs_widget_end{
+        display: none;
+    }
 }
 .az-select{
     line-height: normal;
@@ -135,10 +163,10 @@
             padding: 5px;
             cursor: pointer;
             color: #fff;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.3);
         }
         div:hover{
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(0, 0, 0, 0.7);
         }
     }
 }
@@ -221,7 +249,13 @@
     border-radius: 5px;
 }
 
-
+.main-nav{
+    li{
+        a{
+            font-family: "OpenSans-Semibold";
+        }
+    }
+}
 
 @media only screen and (min-width: 768px){
 	.az-stamp{
