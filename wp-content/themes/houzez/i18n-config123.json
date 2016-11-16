@@ -1,11 +1,11 @@
 {"vendor":{"themes/houzez":"1.3.5"},
 "admin-config":{
-"page":{
+"property":{
 	"forms":{
 		"post":{
 			"fields":{
-				"fave_page_header_revslider":{},
-				"fave_header_type":{}
+				"fave_additional_feature_title":{},
+				"fave_additional_feature_value":{},
 			}
 		}
 	}

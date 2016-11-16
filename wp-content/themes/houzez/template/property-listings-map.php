@@ -33,7 +33,6 @@ if( isset( $_GET['sortby'] ) ) {
 ?>
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-md-5 col-sm-5 col-xs-12 no-padding">
             <div id="mapViewHalfListings" class="map-half fave-screen-fix">
             </div>
@@ -82,19 +81,34 @@ if( isset( $_GET['sortby'] ) ) {
                                 if ( is_front_page()  ) {
                                     $paged = (get_query_var('page')) ? get_query_var('page') : 1;
                                 }
-
-                                $latest_listing_args = array(
-                                    'post_type' => 'property',
-                                    'posts_per_page' => 10,//$posts_per_page,
-                                    'paged' => $paged,
-                                    'post_status' => 'publish'
-                                );
+                                $ls_status = get_the_title();
+                                if($ls_status == 'For Rent' || $ls_status == 'For Sale'){
+                                    $latest_listing_args = array(
+                                        'post_type' => 'property',
+                                        'posts_per_page' => 10,//$posts_per_page,
+                                        'paged' => $paged,
+                                        'post_status' => 'publish',
+                                        'property_status' => get_the_title(),
+                                    );
+                                } else {
+                                    // print_r($ls_status);
+                                    $latest_listing_args = array(
+                                        'post_type' => 'property',
+                                        'posts_per_page' => 10,//$posts_per_page,
+                                        'paged' => $paged,
+                                        'post_status' => 'publish',
+                                        // 'property_status' => get_the_title()
+                                    );
+                                }
 
                                 //$latest_listing_args = apply_filters( 'houzez_search_parameters', $latest_listing_args );
 
                                 $latest_listing_args = houzez_prop_sort ( $latest_listing_args );
 
+                                // print_r($latest_listing_args);
+
                                 $latest_posts = new WP_Query( $latest_listing_args );
+                                // print_r(substr($_SERVER['REDIRECT_URL'], 1, strlen($_SERVER['REDIRECT_URL'])-2));
 
                                 if ( $latest_posts->have_posts() ) :
                                     while ( $latest_posts->have_posts() ) : $latest_posts->the_post();

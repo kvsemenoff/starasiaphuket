@@ -1,3 +1,6 @@
+* {
+  font-family: "OpenSans-Regular"; }
+
 .az-form-group_style {
   margin-top: 13px; }
 
@@ -615,6 +618,8 @@
   padding-bottom: 170px;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 5px; }
+  .ls-mask * {
+    font-family: "OpenSans-Regular"; }
 
 .ls-mask2 {
   padding-top: 30px;

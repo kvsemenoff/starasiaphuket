@@ -124,7 +124,7 @@ if( $keyword_field == 'prop_title' ) {
             </div>
             <?php } ?>
 
-
+            <input type="hidden" name="status" value="<?php the_title(); ?>">
             <?php if( 0/*$adv_show_hide['status'] != 1*/ ) { ?>
             <div class="col-sm-3 col-xs-6">
                 <div class="form-group">

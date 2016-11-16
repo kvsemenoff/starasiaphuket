@@ -1783,6 +1783,7 @@ jQuery(document).ready(function ($) {
          *  Houzez Add Marker
          * -------------------------------------------------------------------------*/
         var houzezAddMarkers = function( props, map ) {
+            // alert(1);
             $.each(props, function(i, prop) {
 
                 var latlng = new google.maps.LatLng(prop.lat,prop.lng);
@@ -2267,7 +2268,25 @@ jQuery(document).ready(function ($) {
         var houzez_half_map_listings = function(keyword, location, area, status, type, bedrooms, bathrooms, min_price, max_price, min_area, max_area, publish_date, price_type) {
             var headerMapSecurity = $('#securityHouzezHeaderMap').val();
             var initial_city = HOUZEZ_ajaxcalls_vars.header_map_selected_city;
-
+            // var ttemppp = {data: {
+            //         'action': 'houzez_header_map_listings',
+            //         // 'initial_city': initial_city,
+            //         'keyword': keyword,
+            //         'location': location,
+            //         'area': area,
+            //         'status': $('input[name="status"]').val(),
+            //         'type': type,
+            //         'bedrooms': bedrooms,
+            //         'bathrooms': bathrooms,
+            //         'min_price': min_price,
+            //         'max_price': max_price,
+            //         'min_area': min_area,
+            //         'max_area': max_area,
+            //         'publish_date': publish_date,
+            //         'security': headerMapSecurity,
+            //         'price_type' : price_type
+            //     }};
+            // alert(JSON.stringify(ttemppp));
             //alert(keyword+' '+location+' '+status+' '+type+' '+bedrooms+' '+bathrooms+' '+min_price+' '+max_price+' '+min_area+' '+max_area);
             //alert(min_price+' '+max_price);
             $.ajax({
@@ -2276,11 +2295,11 @@ jQuery(document).ready(function ($) {
                 url: ajaxurl,
                 data: {
                     'action': 'houzez_header_map_listings',
-                    'initial_city': initial_city,
+                    //'initial_city': initial_city,
                     'keyword': keyword,
                     'location': location,
                     'area': area,
-                    'status': status,
+                    'status': $('input[name=status]').val(),
                     'type': type,
                     'bedrooms': bedrooms,
                     'bathrooms': bathrooms,
@@ -2304,7 +2323,7 @@ jQuery(document).ready(function ($) {
                     // var temp = JSON.stringify(houzezMapoptions2);
                     // alert(temp);
 
-                    houzezMapoptions.scrollwheel = false;
+                    // houzezMapoptions.scrollwheel = false;
                     houzezMapoptions.maxZoom = 12;
                     
                     // houzezMapoptions.scaleControl = true;
@@ -2312,6 +2331,7 @@ jQuery(document).ready(function ($) {
                     // houzezMapoptions.zoom = 10;
                     // alert(temp);
                     houzezMap = new google.maps.Map(document.getElementById('mapViewHalfListings'), houzezMapoptions);
+                    // alert(1);
                     //google.maps.event.trigger(houzezMap, 'resize');
                     // var temp = JSON.stringify(houzezMap);
                     // alert(temp);
@@ -2336,7 +2356,8 @@ jQuery(document).ready(function ($) {
                     remove_map_loader(houzezMap);
 
                     if(data.getProperties === true) {
-
+                        // var tetemp = JSON.stringify(data.properties);
+                        // alert(tetemp);
                         reloadMarkers();
                         houzezAddMarkers( data.properties, houzezMap );
                         var temp1 = markers.reduce(function(bounds, marker ) {
@@ -2350,16 +2371,16 @@ jQuery(document).ready(function ($) {
                         // temp1[1].east++;
 
                         // alert(temp1);
-                        var tempNE = temp1.getNorthEast();
-                        var tempSW = temp1.getSouthWest();
-                        var lat1 = tempNE.lat();
-                        var lng1 = tempNE.lng();
-                        var lat2 = tempSW.lat();
-                        var lng2 = tempSW.lng();
-                        var newTempNE = new google.maps.LatLng({lat: lat1+.05, lng: lng1-.05});
-                        var newTempSW = new google.maps.LatLng({lat: lat2-.05, lng: lng2+.05});
-                        var newBounds = new google.maps.LatLngBounds(newTempNE, newTempSW);
-                        houzezMap.fitBounds( newBounds );
+                        // var tempNE = temp1.getNorthEast();
+                        // var tempSW = temp1.getSouthWest();
+                        // var lat1 = tempNE.lat();
+                        // var lng1 = tempNE.lng();
+                        // var lat2 = tempSW.lat();
+                        // var lng2 = tempSW.lng();
+                        // var newTempNE = new google.maps.LatLng({lat: lat1+.05, lng: lng1-.05});
+                        // var newTempSW = new google.maps.LatLng({lat: lat2-.05, lng: lng2+.05});
+                        // var newBounds = new google.maps.LatLngBounds(newTempNE, newTempSW);
+                        houzezMap.fitBounds( temp1 );
                         // alert(newBounds);
                         // alert(++lat1);
                         // alert(++lng1);
