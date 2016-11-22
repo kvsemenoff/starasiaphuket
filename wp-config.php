@@ -20,22 +20,31 @@
 
 // ** Параметры MySQL: Эту информацию можно получить у вашего хостинг-провайдера ** //
 /** Имя базы данных для WordPress */
+// define('DB_NAME', 'starasia');
+
+// /** Имя пользователя MySQL */
+// define('DB_USER', 'root');
+
+// /** Пароль к базе данных MySQL */
+// define('DB_PASSWORD', '');
+
+// /** Имя сервера MySQL */
+// define('DB_HOST', 'localhost');
+
+// /** Кодировка базы данных для создания таблиц. */
+// define('DB_CHARSET', 'utf8');
+
+// /** Схема сопоставления. Не меняйте, если не уверены. */
+// define('DB_COLLATE', '');
+
+// for db starasia
 define('DB_NAME', 'starasia');
-
-/** Имя пользователя MySQL */
-define('DB_USER', 'root');
-
-/** Пароль к базе данных MySQL */
-define('DB_PASSWORD', '');
-
-/** Имя сервера MySQL */
-define('DB_HOST', 'localhost');
-
-/** Кодировка базы данных для создания таблиц. */
+define('DB_USER', 'roott');
+define('DB_PASSWORD', '1111');
+define('DB_HOST', '192.168.1.189:3308'); 
 define('DB_CHARSET', 'utf8');
-
-/** Схема сопоставления. Не меняйте, если не уверены. */
 define('DB_COLLATE', '');
+
 
 /**#@+
  * Уникальные ключи и соли для аутентификации.
